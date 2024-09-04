@@ -1,9 +1,11 @@
-ebooklib
 beautifulsoup4
 chromadb
 openai
 python-dotenv
-langchain_community
+langchain
 langchain_text_splitters
-EbookLib
+ebooklib
 pypdf
+
+
+# https://www.youtube.com/watch?v=JfSmffOyV-8
