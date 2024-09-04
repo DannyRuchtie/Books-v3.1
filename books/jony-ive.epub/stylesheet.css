@@ -1,0 +1,368 @@
+.Basic-Text-Frame {
+    display: block;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2
+    }
+.calibre {
+    -epub-hyphens: auto;
+    -webkit-hyphens: auto;
+    display: block;
+    font-size: 1.125em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 5pt
+    }
+.calibre1 {
+    display: block;
+    font-size: 0.66667em;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    margin: 1.5em
+    }
+.calibre2 {
+    line-height: 1.2
+    }
+.calibre3 {
+    font-style: italic
+    }
+.calibre4 {
+    display: block;
+    font-size: 1.125em;
+    line-height: 1.2;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 5pt
+    }
+.calibre5 {
+    display: block;
+    line-height: 1.2;
+    text-align: center
+    }
+.crlogo {
+    display: block;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-align: center;
+    padding: 0;
+    margin: 0.5em 47%
+    }
+.endnote {
+    font-size: 0.75em;
+    line-height: 1.2;
+    vertical-align: super
+    }
+.endnote1 {
+    font-size: 0.66667em;
+    line-height: 1.2;
+    vertical-align: super
+    }
+.gray {
+    background-color: #333;
+    border-radius: 0.5em;
+    line-height: 1.2;
+    padding: 0.5em 1em 0.4em
+    }
+.h {
+    display: block;
+    font-style: normal;
+    font-weight: normal;
+    height: 100%;
+    line-height: 1.2;
+    text-align: center
+    }
+.h1 {
+    height: 100%;
+    line-height: 1.2;
+    width: auto
+    }
+.h2 {
+    display: block;
+    font-style: normal;
+    font-weight: normal;
+    height: 70%;
+    line-height: 1.2;
+    text-align: center
+    }
+.w {
+    height: auto;
+    line-height: 1.2;
+    width: 100%
+    }
+.w1 {
+    display: block;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-align: center;
+    width: 100%
+    }
+.w50c {
+    display: block;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-align: center;
+    padding: 0;
+    margin: 0 25%
+    }
+.x01-FM-Contents-BM-Head {
+    display: block;
+    font-size: 0.88889em;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: left;
+    text-indent: 0;
+    margin: 0
+    }
+.x01-FM-Contents-BM-Head1 {
+    display: block;
+    font-size: 0.88889em;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: left;
+    text-indent: 0;
+    margin: 1.27em 0 0
+    }
+.x01-FM-Contents-CN {
+    display: block;
+    font-size: 0.88889em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-align: left;
+    text-indent: 0;
+    margin: 0.86em 0 0
+    }
+.x01-FM-Contents-CT {
+    display: block;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: left;
+    text-indent: 0;
+    margin: 0 0 0.67em
+    }
+.x01-FM-Copyright-Text {
+    display: block;
+    font-size: 0.66667em;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    text-indent: 0;
+    margin: 0
+    }
+.x01-FM-Copyright-Text-Space {
+    display: block;
+    font-size: 0.66667em;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    text-indent: 0;
+    margin: 1.14em 0 0
+    }
+.x01-FM-Dedi-Body {
+    display: block;
+    font-size: 0.88889em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-align: center;
+    text-indent: 0;
+    margin: 15% 0 0
+    }
+.x01-FM-Head {
+    color: #999;
+    display: block;
+    font-size: 1.22222em;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: left;
+    text-indent: 0;
+    margin: 10% 0 10% 1em
+    }
+.x03-CO-Body-Text {
+    display: block;
+    font-size: 0.88889em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-indent: 0;
+    margin: 10% 0 0
+    }
+.x03-Chapter-Epigraph {
+    display: block;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-indent: 0;
+    margin: 0 10%
+    }
+.x03-Chapter-Epigraph-Source {
+    display: block;
+    font-size: 0.77778em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-align: right;
+    text-indent: 0;
+    margin: 0.11em 10% 0
+    }
+.x03-Chapter-Number {
+    color: #999;
+    display: block;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: left;
+    text-indent: 0;
+    margin: 10% 0 0 1em
+    }
+.x03-Chapter-Title {
+    display: block;
+    font-size: 1.22222em;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: left;
+    text-indent: 0;
+    margin: 10% 0 1em 10%
+    }
+.x04-Body-Text {
+    display: block;
+    font-size: 0.88889em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-indent: 1.43em;
+    margin: 0
+    }
+.x04-Body-Text-FL {
+    display: block;
+    font-size: 0.88889em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-indent: 0;
+    margin: 0
+    }
+.x04-Space-Break-Orn {
+    display: block;
+    font-size: 0.88889em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-align: center;
+    text-indent: 0;
+    margin: 1em 0
+    }
+.x05-Head {
+    display: block;
+    font-size: 1.11111em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-align: left;
+    text-indent: 0;
+    margin: 1.86em 0 0.64em
+    }
+.x12-Insert-Caption {
+    display: block;
+    font-size: 0.88889em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-align: left;
+    text-indent: 0;
+    margin: 1em 10% 0
+    }
+.x12-Insert-Credit {
+    display: block;
+    font-size: 0.66667em;
+    font-style: normal;
+    font-weight: normal;
+    text-align: left;
+    text-indent: 0;
+    margin: 0 10%
+    }
+.x13-BM-End-Notes {
+    display: block;
+    font-size: 0.88889em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-align: left;
+    text-indent: -1.8em;
+    margin: 0 0 0 1.8em
+    }
+.x13-BM-End-Notes-CN {
+    display: block;
+    font-size: 0.77778em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-align: left;
+    text-indent: 0;
+    margin: 1.33em 0 0
+    }
+.x13-BM-End-Notes-CT {
+    display: block;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: left;
+    text-indent: 0;
+    margin: 0 0 0.5em
+    }
+.x13-BM-Index {
+    display: block;
+    font-size: 0.77778em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-align: left;
+    text-indent: -1em;
+    margin: 0 0 0 2em
+    }
+.x13-BM-Index-Alpha {
+    display: block;
+    font-size: 0.77778em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-align: left;
+    text-indent: -2em;
+    margin: 0 0 0 2em
+    }
+.x13-BM-Index1 {
+    display: block;
+    font-size: 0.77778em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-align: left;
+    text-indent: 0;
+    margin: 0 0 0 2em
+    }
+.x13-BM-Permissions {
+    display: block;
+    font-size: 0.77778em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.2;
+    text-align: left;
+    text-indent: -1.5em;
+    margin: 0 0 0 1.5em
+    }

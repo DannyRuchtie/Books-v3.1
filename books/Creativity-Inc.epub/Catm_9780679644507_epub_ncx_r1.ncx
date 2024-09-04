@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE ncx  PUBLIC '-//NISO//DTD ncx 2005-1//EN'  'http://www.daisy.org/z3986/2005/ncx-2005-1.dtd'>
+<ncx version="2005-1" xml:lang="en-US" xmlns="http://www.daisy.org/z3986/2005/ncx/">
+	<head>
+		<meta content="978-0-679-64450-7" name="dtb:uid"/>
+		<meta content="2" name="dtb:depth"/>
+		<meta content="0" name="dtb:totalPageCount"/>
+		<meta content="0" name="dtb:maxPageNumber"/>
+	</head>
+	<docTitle><text>Creativity, Inc.: Overcoming the Unseen Forces That Stand in the Way of True Inspiration</text></docTitle>
+	<docAuthor><text>Ed Catmull with Amy Wallace</text></docAuthor>
+	<navMap>
+		<navPoint class="cover" id="np1" playOrder="1">
+			<navLabel><text>Cover</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_cvi_r1.htm"/>
+		</navPoint>
+		<navPoint class="titlepage" id="np2" playOrder="2">
+			<navLabel><text>Title Page</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_tp_r1.htm"/>
+		</navPoint>
+		<navPoint class="copyright" id="np3" playOrder="3">
+			<navLabel><text>Copyright</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_cop_r1.htm"/>
+		</navPoint>
+		<navPoint class="other" id="np4" playOrder="4">
+			<navLabel><text>Contents</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_toc_r1.htm"/>
+		</navPoint>
+		<navPoint class="other" id="np5" playOrder="5">
+			<navLabel><text>Introduction: Lost and Found</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_itr_r1.htm"/>
+		</navPoint>
+		<navPoint class="part" id="np6" playOrder="6">
+			<navLabel><text>Part I: Getting Started</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_p01_r1.htm"/>
+		<navPoint class="chapter" id="np7" playOrder="7">
+			<navLabel><text>Chapter 1: Animated</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_c01_r1.htm"/>
+		</navPoint>
+		<navPoint class="chapter" id="np8" playOrder="8">
+			<navLabel><text>Chapter 2: Pixar is Born</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_c02_r1.htm"/>
+		</navPoint>
+		<navPoint class="chapter" id="np9" playOrder="9">
+			<navLabel><text>Chapter 3: A Defining Goal</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_c03_r1.htm"/>
+		</navPoint>
+		<navPoint class="chapter" id="np10" playOrder="10">
+			<navLabel><text>Chapter 4: Establishing Pixar&#x2019;s Identity</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_c04_r1.htm"/>
+		</navPoint>
+		</navPoint>
+		<navPoint class="part" id="np11" playOrder="11">
+			<navLabel><text>Part II: Protecting the New</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_p02_r1.htm"/>
+		<navPoint class="chapter" id="np12" playOrder="12">
+			<navLabel><text>Chapter 5: Honesty and Candor</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_c05_r1.htm"/>
+		</navPoint>
+		<navPoint class="chapter" id="np13" playOrder="13">
+			<navLabel><text>Chapter 6: Fear and Failure</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_c06_r1.htm"/>
+		</navPoint>
+		<navPoint class="chapter" id="np14" playOrder="14">
+			<navLabel><text>Chapter 7: The Hungry Beast and the Ugly Baby</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_c07_r1.htm"/>
+		</navPoint>
+		<navPoint class="chapter" id="np15" playOrder="15">
+			<navLabel><text>Chapter 8: Change and Randomness</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_c08_r1.htm"/>
+		</navPoint>
+		<navPoint class="chapter" id="np16" playOrder="16">
+			<navLabel><text>Chapter 9: The Hidden</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_c09_r1.htm"/>
+		</navPoint>
+		</navPoint>
+		<navPoint class="part" id="np17" playOrder="17">
+			<navLabel><text>Part III: Building and Sustaining</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_p03_r1.htm"/>
+		<navPoint class="chapter" id="np18" playOrder="18">
+			<navLabel><text>Chapter 10: Broadening Our View</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_c10_r1.htm"/>
+		</navPoint>
+		<navPoint class="chapter" id="np19" playOrder="19">
+			<navLabel><text>Chapter 11: The Unmade Future</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_c11_r1.htm"/>
+		</navPoint>
+		</navPoint>
+		<navPoint class="part" id="np20" playOrder="20">
+			<navLabel><text>Part IV: Testing What We Know</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_p04_r1.htm"/>
+		<navPoint class="chapter" id="np21" playOrder="21">
+			<navLabel><text>Chapter 12: A New Challenge</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_c12_r1.htm"/>
+		</navPoint>
+		<navPoint class="chapter" id="np22" playOrder="22">
+			<navLabel><text>Chapter 13: Notes Day</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_c13_r1.htm"/>
+		</navPoint>
+		</navPoint>
+		<navPoint class="other" id="np23" playOrder="23">
+			<navLabel><text>Afterword: The Steve We Knew</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_aft_r1.htm"/>
+		</navPoint>
+		<navPoint class="other" id="np24" playOrder="24">
+			<navLabel><text>Starting Points: Thoughts for Managing a Creative Culture</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_bm_r1.htm"/>
+		</navPoint>
+		<navPoint class="other" id="np25" playOrder="25">
+			<navLabel><text>Photo Insert</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_bm1_r1.htm"/>
+		</navPoint>
+		<navPoint class="other" id="np26" playOrder="26">
+			<navLabel><text>Dedication</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_ded_r1.htm"/>
+		</navPoint>
+		<navPoint class="other" id="np27" playOrder="27">
+			<navLabel><text>Acknowledgments</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_ack_r1.htm"/>
+		</navPoint>
+		<navPoint class="other" id="np28" playOrder="28">
+			<navLabel><text>About the Authors</text></navLabel>
+			<content src="OEBPS/Catm_9780679644507_epub_ata_r1.htm"/>
+		</navPoint>
+	</navMap>
+</ncx>

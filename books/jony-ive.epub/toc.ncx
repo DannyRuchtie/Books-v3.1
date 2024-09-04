@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="eng">
+  <head>
+    <meta content="406a08b1-35ba-4a15-a88b-a226d80d4b6c" name="dtb:uid"/>
+    <meta content="2" name="dtb:depth"/>
+    <meta content="calibre (1.10.0)" name="dtb:generator"/>
+    <meta content="0" name="dtb:totalPageCount"/>
+    <meta content="0" name="dtb:maxPageNumber"/>
+  </head>
+  <docTitle>
+    <text>Jony Ive: The Genius Behind Apple's Greatest Products</text>
+  </docTitle>
+  <navMap>
+    <navPoint class="chapter" id="num_1" playOrder="1">
+      <navLabel>
+        <text>TITLE PAGE</text>
+      </navLabel>
+      <content src="text/part0000.html"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_2" playOrder="1">
+      <navLabel>
+        <text>COPYRIGHT</text>
+      </navLabel>
+      <content src="text/part0001.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_3" playOrder="2">
+      <navLabel>
+        <text>DEDICATION</text>
+      </navLabel>
+      <content src="text/part0002.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_4" playOrder="3">
+      <navLabel>
+        <text>CONTENTS</text>
+      </navLabel>
+      <content src="text/part0003.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_5" playOrder="4">
+      <navLabel>
+        <text>AUTHOR’S NOTE</text>
+      </navLabel>
+      <content src="text/part0004.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_6" playOrder="2">
+      <navLabel>
+        <text>CHAPTER 1 • School Days</text>
+      </navLabel>
+      <content src="text/part0005_split_000.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_7" playOrder="3">
+      <navLabel>
+        <text>CHAPTER 2 • A British Design Education</text>
+      </navLabel>
+      <content src="text/part0006_split_000.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_8" playOrder="4">
+      <navLabel>
+        <text>CHAPTER 3 • Life in London</text>
+      </navLabel>
+      <content src="text/part0007_split_000.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_9" playOrder="5">
+      <navLabel>
+        <text>CHAPTER 4 • Early Days at Apple</text>
+      </navLabel>
+      <content src="text/part0008_split_000.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_10" playOrder="6">
+      <navLabel>
+        <text>CHAPTER 5 • Jobs Returns to Apple</text>
+      </navLabel>
+      <content src="text/part0009_split_000.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_11" playOrder="7">
+      <navLabel>
+        <text>CHAPTER 6 • A String of Hits</text>
+      </navLabel>
+      <content src="text/part0010_split_000.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_12" playOrder="8">
+      <navLabel>
+        <text>CHAPTER 7 • The Design Studio Behind the Iron Curtain</text>
+      </navLabel>
+      <content src="text/part0011_split_000.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_13" playOrder="9">
+      <navLabel>
+        <text>CHAPTER 8 • Design of the iPod</text>
+      </navLabel>
+      <content src="text/part0012_split_000.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_14" playOrder="10">
+      <navLabel>
+        <text>CHAPTER 9 • Manufacturing, Materials and Other Matters</text>
+      </navLabel>
+      <content src="text/part0013_split_000.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_15" playOrder="11">
+      <navLabel>
+        <text>CHAPTER 10 • The iPhone</text>
+      </navLabel>
+      <content src="text/part0014_split_000.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_16" playOrder="12">
+      <navLabel>
+        <text>CHAPTER 11 • The iPad</text>
+      </navLabel>
+      <content src="text/part0015_split_000.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_17" playOrder="13">
+      <navLabel>
+        <text>CHAPTER 12 • Unibody Everywhere</text>
+      </navLabel>
+      <content src="text/part0016_split_000.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_18" playOrder="14">
+      <navLabel>
+        <text>CHAPTER 13 • Apple’s MVP</text>
+      </navLabel>
+      <content src="text/part0017_split_000.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_19" playOrder="18">
+      <navLabel>
+        <text>PHOTOGRAPHS</text>
+      </navLabel>
+      <content src="text/part0018.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_20" playOrder="19">
+      <navLabel>
+        <text>ACKNOWLEDGMENTS</text>
+      </navLabel>
+      <content src="text/part0052.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_21" playOrder="20">
+      <navLabel>
+        <text>SECRECY AND SOURCES</text>
+      </navLabel>
+      <content src="text/part0053.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_22" playOrder="21">
+      <navLabel>
+        <text>NOTES</text>
+      </navLabel>
+      <content src="text/part0054.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_23" playOrder="22">
+      <navLabel>
+        <text>INDEX</text>
+      </navLabel>
+      <content src="text/part0055.html#x9781101614846_EPUB"/>
+    </navPoint>
+    <navPoint class="chapter" id="num_24" playOrder="23">
+      <navLabel>
+        <text>PHOTO CREDITS</text>
+      </navLabel>
+      <content src="text/part0056.html#x9781101614846_EPUB"/>
+    </navPoint>
+  </navMap>
+</ncx>

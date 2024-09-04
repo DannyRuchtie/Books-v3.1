@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>artistName</key>
+	<string>Ken Kocienda</string>
+	<key>book-info</key>
+	<dict>
+		<key>cover-image-hash</key>
+		<string>3021B192E8192672D0D8C6E727890715</string>
+		<key>cover-image-path</key>
+		<string>OEBPS/images/9781250194466_FC-kocienda.jpg</string>
+		<key>mime-type</key>
+		<string>application/epub+zip</string>
+		<key>package-file-hash</key>
+		<string>47D4D103BCA0B85A436DF8B2622170E4</string>
+		<key>publisher-unique-id</key>
+		<string>9781250194473</string>
+		<key>unique-id</key>
+		<integer>-6802024141580709840</integer>
+		<key>update-level</key>
+		<integer>2</integer>
+	</dict>
+	<key>itemName</key>
+	<string>Creative Selection</string>
+	<key>playlistName</key>
+	<string>Creative Selection</string>
+	<key>releaseDate</key>
+	<string>2018-07-13</string>
+</dict>
+</plist>

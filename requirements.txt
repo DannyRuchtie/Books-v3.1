@@ -1,0 +1,9 @@
+ebooklib
+beautifulsoup4
+chromadb
+openai
+python-dotenv
+langchain_community
+langchain_text_splitters
+EbookLib
+pypdf

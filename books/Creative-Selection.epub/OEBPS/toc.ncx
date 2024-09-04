@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN" "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd">
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+	<head>
+		<meta name="dtb:uid" content="9781250194473"/>
+		<meta name="dtb:depth" content="0"/>
+		<meta name="dtb:totalPageCount" content="0"/>
+		<meta name="dtb:maxPageNumber" content="0"/>
+	</head>
+	<docTitle>
+		<text/>	</docTitle>
+	<navMap>
+		<navPoint id="navpoint1" playOrder="1">
+			<navLabel>
+				<text>Cover</text>
+			</navLabel>
+			<content src="00_Kocienda_cover.html"/>
+		</navPoint>
+		<navPoint id="navpoint2" playOrder="2">
+			<navLabel>
+				<text>Title Page</text>
+			</navLabel>
+			<content src="01b_Kocienda_ft.html"/>
+		</navPoint>
+		<navPoint id="navpoint3" playOrder="3">
+			<navLabel>
+				<text>Copyright Notice</text>
+			</navLabel>
+			<content src="01c_Kocienda_cip.html"/>
+		</navPoint>
+		<navPoint id="navpoint4" playOrder="4">
+			<navLabel>
+				<text>Dedication</text>
+			</navLabel>
+			<content src="01d_Kocienda_ded.html"/>
+		</navPoint>
+		<navPoint id="navpoint5" playOrder="5">
+			<navLabel>
+				<text>Introduction</text>
+			</navLabel>
+			<content src="02_Kocienda_intro.html"/>
+		</navPoint>
+		<navPoint id="navpoint6" playOrder="6">
+			<navLabel>
+				<text>1. The Demo</text>
+			</navLabel>
+			<content src="03_Kocienda_1.html"/>
+		</navPoint>
+		<navPoint id="navpoint7" playOrder="7">
+			<navLabel>
+				<text>2. The Crystal Ball</text>
+			</navLabel>
+			<content src="04_Kocienda_2.html"/>
+		</navPoint>
+		<navPoint id="navpoint8" playOrder="8">
+			<navLabel>
+				<text>3. The Black Slab</text>
+			</navLabel>
+			<content src="05_Kocienda_3.html"/>
+		</navPoint>
+		<navPoint id="navpoint9" playOrder="9">
+			<navLabel>
+				<text>4. One Simple Rule</text>
+			</navLabel>
+			<content src="06_Kocienda_4.html"/>
+		</navPoint>
+		<navPoint id="navpoint10" playOrder="10">
+			<navLabel>
+				<text>5. The Hardest Problem</text>
+			</navLabel>
+			<content src="07_Kocienda_5.html"/>
+		</navPoint>
+		<navPoint id="navpoint11" playOrder="11">
+			<navLabel>
+				<text>6. The Keyboard Derby</text>
+			</navLabel>
+			<content src="08_Kocienda_6.html"/>
+		</navPoint>
+		<navPoint id="navpoint12" playOrder="12">
+			<navLabel>
+				<text>7. QWERTY</text>
+			</navLabel>
+			<content src="09_Kocienda_7.html"/>
+		</navPoint>
+		<navPoint id="navpoint13" playOrder="13">
+			<navLabel>
+				<text>8. Convergence</text>
+			</navLabel>
+			<content src="10_Kocienda_8.html"/>
+		</navPoint>
+		<navPoint id="navpoint14" playOrder="14">
+			<navLabel>
+				<text>9. The Intersection</text>
+			</navLabel>
+			<content src="11_Kocienda_9.html"/>
+		</navPoint>
+		<navPoint id="navpoint15" playOrder="15">
+			<navLabel>
+				<text>10. At This Point</text>
+			</navLabel>
+			<content src="12_Kocienda_10.html"/>
+		</navPoint>
+		<navPoint id="navpoint16" playOrder="16">
+			<navLabel>
+				<text>Epilogue</text>
+			</navLabel>
+			<content src="13_Kocienda_epi.html"/>
+		</navPoint>
+		<navPoint id="navpoint17" playOrder="17">
+			<navLabel>
+				<text>Acknowledgments</text>
+			</navLabel>
+			<content src="14_Kocienda_ack.html"/>
+		</navPoint>
+		<navPoint id="navpoint18" playOrder="18">
+			<navLabel>
+				<text>Notes</text>
+			</navLabel>
+			<content src="15_Kocienda_notes.html"/>
+		</navPoint>
+		<navPoint id="navpoint19" playOrder="19">
+			<navLabel>
+				<text>Index</text>
+			</navLabel>
+			<content src="16_Kocienda_index_2col.html"/>
+		</navPoint>
+		<navPoint id="navpoint20" playOrder="20">
+			<navLabel>
+				<text>About the Author</text>
+			</navLabel>
+			<content src="19_Kocienda_about-au.html"/>
+		</navPoint>
+		<navPoint id="navpoint21" playOrder="21">
+			<navLabel>
+				<text>Newsletter Sign-Up</text>
+			</navLabel>
+			<content src="20_Kocienda_newsletter.html"/>
+		</navPoint>
+		<navPoint id="navpoint22" playOrder="22">
+			<navLabel>
+				<text>Contents</text>
+			</navLabel>
+			<content src="01e_Kocienda_contents.html"/>
+		</navPoint>
+		<navPoint id="navpoint23" playOrder="23">
+			<navLabel>
+				<text>Copyright</text>
+			</navLabel>
+			<content src="21_Kocienda_ecip.html"/>
+		</navPoint>
+	</navMap>
+</ncx>

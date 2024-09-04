@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BKAllocatedSize</key>
+	<integer>13115392</integer>
+	<key>BKDisplayName</key>
+	<string>Creative Selection_ Inside Apple's Design Process During the Golden Age of Steve Jobs by Ken Kocienda</string>
+	<key>BKGenerationCount</key>
+	<integer>2</integer>
+	<key>BKInsertionDate</key>
+	<integer>722080415</integer>
+	<key>artistName</key>
+	<string>Ken Kocienda</string>
+	<key>book-info</key>
+	<dict>
+		<key>cover-image-hash</key>
+		<string>3021B192E8192672D0D8C6E727890715</string>
+		<key>cover-image-path</key>
+		<string>OEBPS/images/9781250194466_FC-kocienda.jpg</string>
+		<key>mime-type</key>
+		<string>application/epub+zip</string>
+		<key>package-file-hash</key>
+		<string>47D4D103BCA0B85A436DF8B2622170E4</string>
+		<key>publisher-unique-id</key>
+		<string>9781250194473</string>
+		<key>unique-id</key>
+		<integer>-6802024141580709840</integer>
+		<key>update-level</key>
+		<integer>2</integer>
+	</dict>
+	<key>bookDescription</key>
+	<string>&lt;p&gt;&lt;b&gt;An insider's account of Apple's creative process during the golden years of Steve Jobs.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Hundreds of millions of people use Apple products every day; several thousand work on Apple's campus in Cupertino, California; but only a handful sit at the drawing board. &lt;i&gt;Creative Selection&lt;/i&gt; recounts the life of one of the few who worked behind the scenes, a highly-respected software engineer who worked in the final years the Steve Jobs era&amp;#8212;the Golden Age of Apple. &lt;/p&gt;&lt;p&gt;Ken Kocienda offers an inside look at Apple's creative process. For fifteen years, he was on the ground floor of the company as a specialist, directly responsible for experimenting with novel user interface concepts and writing powerful, easy-to-use software for products including the iPhone, the iPad, and the Safari web browser. His stories explain the symbiotic relationship between software and product development for those who have never dreamed of programming a computer, and reveal what it was...</string>
+	<key>genre</key>
+	<string></string>
+	<key>isPreview</key>
+	<false/>
+	<key>itemName</key>
+	<string>Creative Selection</string>
+	<key>updateDate</key>
+	<date>2023-11-19T09:53:35Z</date>
+</dict>
+</plist>

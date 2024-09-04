@@ -1,0 +1,3684 @@
+@page {
+	margin : 0.5em;
+}
+tbody, thead, tfoot, tr, td, th {
+	border-style : inherit;
+	border-width : inherit;
+	border-color : inherit;
+}
+.leftFloat {
+	float : left;
+}
+.rightFloat {
+	float : right;
+}
+ol.List-1 {
+	margin-left : 27px;
+}
+ul.List-2 {
+	margin-left : 23px;
+}
+span.FM-Contents-ContentsPageNum {
+	font-family : "Trade Gothic LT Pro", sans-serif;
+	font-weight : normal;
+	font-style : normal;
+}
+span.FM-CIP-First-SmallCaps {
+	font-size : 0.5em;
+}
+span.no-break {
+}
+span.Chapter-Body-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-NoteCallout {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.no-break-1 {
+}
+span.Chapter-Body-Italic-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-NoteCallout-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.Caption-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+}
+span.Chapter-Body-First-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-Ext-only-NoteCallout {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.Chapter-Body-Ext-last-NoteCallout {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.Chapter-Body-BL-last-NoteCallout {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.Chapter-Body-RunInD {
+	font-family : Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.78em;
+}
+span.Chapter-Body-SmallCaps {
+	font-variant : small-caps;
+}
+span.Chapter-Body-RtArrow {
+	font-family : Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+}
+span.Chapter-Body-RunInD-last-letter {
+	font-family : Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.78em;
+}
+span.Chapter-Body-Italic-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-NoteCallout-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.Chapter-Body-NL-first-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-NL-mid-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-NL-last-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-Italic-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Index-SubEntry-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Index-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Index-NewAlpha-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-Italic-4 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.no-break-2 {
+}
+span.Chapter-Body-Italic-5 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-Ext-Speech-only-SmallCaps {
+	font-variant : small-caps;
+}
+span.Chapter-Body-RunInD-1 {
+	font-family : Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.78em;
+}
+span.Chapter-Body-RunInD-last-letter-1 {
+	font-family : Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.78em;
+}
+span.no-break-3 {
+}
+span.Chapter-Body-Italic-6 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-NoteCallout-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.Chapter-Body-Ext-last-Bold {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : bold;
+	font-style : normal;
+}
+span.Chapter-Body-Ext-last-Bold-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : bold;
+	font-style : italic;
+}
+span.Chapter-Body-UL-first-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-UL-last-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.no-break-4 {
+}
+span.Chapter-Body-Italic-7 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-NoteCallout-4 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.Chapter-Body-TextBreak-NoPara-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-Ext-only-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-Ext-only-NoteCallout-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.Chapter-Body-TextBreak-NoPara-NoteCallout {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.Rear-Notes-zz2zz-NoPara-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Rear-Notes-zz2zz-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Rear-Notes-zz3zz-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Rear-Notes-zz4zz-NoPara-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Rear-Notes-zz4zz-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Rear-Notes-zz5zz-NoPara-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Rear-Notes-zz5zz-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Rear-Notes-zz6zz-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Rear-Notes-zz7zz-NoPara-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Rear-Notes-zz7zz-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Rear-Notes-zz8zz-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Rear-Notes-zz6zz-NoPara-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Rear-Notes-zz9zz-NoPara-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Rear-Notes-zz9zz-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-Italic-8 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-NoteCallout-5 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.Caption-Italic-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+}
+span.Chapter-Body-TextBreak-NoPara-Italic-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-Ext-only-Italic-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-Ext-only-NoteCallout-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.Chapter-Body-RunInD-2 {
+	font-family : Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.78em;
+}
+span.Chapter-Body-Ext-only-RunInD {
+	font-family : Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.78em;
+}
+span.Chapter-Body-RunInD-last-letter-2 {
+	font-family : Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.78em;
+}
+span.no-break-5 {
+}
+span.Chapter-Body-Italic-9 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-NoteCallout-6 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.Chapter-Body-Screenplay-Dlg-only-RunInA {
+	font-variant : small-caps;
+}
+span.Chapter-Body-NoPara-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-Ext-last-NoteCallout-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.monospace-computer-code-style {
+	font-family : Courier, serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.75em;
+}
+span.no-break-6 {
+}
+span.Chapter-Body-Italic-10 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-NoteCallout-7 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.Chapter-Body-BL-first-RunInD {
+	font-family : Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.78em;
+}
+span.Chapter-Body-First-Italic-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-Ext-first-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-Ext-last-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-First-NoteCallout {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.Chapter-Body-BL-mid-RunInD {
+	font-family : Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.78em;
+}
+span.Chapter-Body-BL-last-RunInD {
+	font-family : Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.78em;
+}
+span.Chapter-Body-RunInD-3 {
+	font-family : Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.78em;
+}
+span.Chapter-Body-Ext-only-RunInD-1 {
+	font-family : Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.78em;
+}
+span.Chapter-Body-RunInD-last-letter-3 {
+	font-family : Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.78em;
+}
+span.no-break-7 {
+}
+span.Chapter-Body-Italic-11 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-NoteCallout-8 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.Chapter-Body-NoPara-Italic-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-Ext-only-Italic-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-UL-first-Italic-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-Notes-Italic {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-NL-first-Italic-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+}
+span.Chapter-Body-Ext-only-NoteCallout-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.Chapter-Body-First-NoteCallout-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	font-variant : normal;
+	vertical-align : super;
+}
+span.Chapter-Body-RunInD-4 {
+	font-family : Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.78em;
+}
+span.Chapter-Body-RtArrow-1 {
+	font-family : Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+}
+span.Chapter-Body-UL-first-RunInC {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : bold;
+	font-style : italic;
+}
+span.Chapter-Body-UL-mid-RunInC {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : bold;
+	font-style : italic;
+}
+span.Chapter-Body-UL-last-RunInC {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : bold;
+	font-style : italic;
+}
+span.Chapter-Body-RunInD-last-letter-4 {
+	font-family : Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.78em;
+}
+span.char-style-override-1 {
+	font-style : normal;
+	font-weight : bold;
+}
+span.char-style-override-2 {
+	vertical-align : super;
+}
+span.char-style-override-3 {
+	font-size : 0.8em;
+}
+span.char-style-override-4 {
+	font-style : italic;
+	font-weight : normal;
+}
+span.char-style-override-5 {
+	font-size : 0.73em;
+	font-style : italic;
+	font-weight : normal;
+}
+p.FM-Contents-Title {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 86px 0px;
+}
+p.FM-Contents-Front {
+	font-family : "Trade Gothic LT Pro", sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 8px 0px;
+}
+p.FM-Contents-Front-Last {
+	font-family : "Trade Gothic LT Pro", sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 16px 0px;
+}
+p.FM-Contents {
+	font-family : "Trade Gothic LT Pro", sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 8px 0px;
+}
+p.FM-Contents-Rear-First {
+	font-family : "Trade Gothic LT Pro", sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 6px 0px 8px 0px;
+}
+p.FM-Contents-Rear {
+	font-family : "Trade Gothic LT Pro", sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 8px 0px;
+}
+p.FM-CIP-1LineAbove {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.25;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 10px 0px 0px 0px;
+}
+p.FM-CIP-First {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.25;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.FM-CIP-1LineAbove-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.25;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 10px 0px 0px 0px;
+}
+p.FM-CIP-2LineAbove {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.25;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 10px 0px 0px 0px;
+}
+p.FM-CIP {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.25;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.FM-Dedication-First {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+	font-size : 1em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.38;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz10zz-NoPara {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.75em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.44;
+	text-align : justify;
+	color : #000000;
+	text-indent : -17px;
+	margin : 0px 0px 0px 17px;
+}
+p.Chapter-Body-First {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 124px 0px 0px 0px;
+}
+p.Chapter-Body {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px;
+}
+p.Chapter-Body-Front-Ch-Num {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 2.33em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 0.86;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 51px 0px;
+}
+p.Chapter-Body-Front-Title {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Art {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 24px 0px;
+}
+p.Chapter-Body-Ext-Alt-only-only {
+	font-family : "Courier Std", serif;
+	font-weight : 500;
+	font-style : normal;
+	font-size : 0.79em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.74;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 8px 0px;
+}
+p.No-paragraph-style {
+	font-family : "Minion Pro", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 1em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-First-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 124px 0px 0px 0px;
+}
+p.Chapter-Body-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px;
+}
+p.Chapter-Body-Front-Ch-Num-1 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 2.33em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 0.86;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 51px 0px;
+}
+p.Chapter-Body-Front-Title-1 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Art-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 24px 0px;
+}
+p.Chapter-Body-Notes {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.75em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.33;
+	text-align : justify;
+	color : #000000;
+	text-indent : -6px;
+	margin : 0px 0px 0px 6px;
+}
+p.Chapter-Body-TextBreak {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 11px 0px 6px 0px;
+}
+p.Chapter-Body-TextBreak-NoPara {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Ext-only {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 17px 18px;
+}
+p.Chapter-Body-Ext-first {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 17px 18px 0px 18px;
+}
+p.Chapter-Body-Ext-last {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px 18px 17px 18px;
+}
+li.Chapter-Body-BL-first {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 17px;
+	margin-bottom : 0px;
+}
+li.Chapter-Body-BL-last {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 17px;
+}
+li.Chapter-Body-BL-mid {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 0px;
+}
+p.Chapter-Body-A {
+	font-family : "Trade Gothic LT Pro", sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.94em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.47;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 12px 0px 5px 0px;
+}
+p.Caption {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 18px 24px 18px;
+}
+p.Chapter-Body-Art-with-caption {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 24px 0px 3px 0px;
+}
+p.Chapter-Body-NoPara {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Title {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Title-1 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Body-First {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 195px 0px 0px 0px;
+}
+p.Body {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px;
+}
+p.Chapter-Body-First-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 124px 0px 0px 0px;
+}
+p.Chapter-Body-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px;
+}
+li.Chapter-Body-NL-first {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 17px;
+	margin-bottom : 0px;
+}
+li.Chapter-Body-NL-mid {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 0px;
+}
+li.Chapter-Body-NL-last {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 17px;
+}
+p.Chapter-Body-Front-Ch-Num-2 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 2.33em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 0.86;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 51px 0px;
+}
+p.Chapter-Body-Front-Title-2 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Art-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 24px 0px;
+}
+p.Chapter-Body-TextBreak-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 11px 0px 6px 0px;
+}
+p.Chapter-Body-TextBreak-NoPara-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Front-Title-No-Num {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px;
+}
+p.Chapter-Body-First-No-Ch-Num {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 195px 0px 0px 0px;
+}
+p.Index-Title {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Index {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : -18px;
+	margin : 0px 0px 0px 18px;
+}
+p.Index-SubEntry {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : -9px;
+	margin : 0px 0px 0px 18px;
+}
+p.Index-NewAlpha {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : -18px;
+	margin : 17px 0px 0px 18px;
+}
+p.Rear-Notes-zz1zz-NoPara {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.75em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.22;
+	text-align : justify;
+	color : #000000;
+	text-indent : -20px;
+	margin : 0px 0px 0px 20px;
+}
+p.FM-FullTitle {
+	font-family : "Trade Gothic LT Std Cn", sans-serif;
+	font-stretch : condensed;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 3.08em;
+	text-decoration : none;
+	text-transform : uppercase;
+	line-height : 1.35;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.FM-SubTitle {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.25em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 2.07;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 37px 92px 0px 92px;
+}
+p.FM-BookAuthor {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 2em;
+	text-decoration : none;
+	text-transform : uppercase;
+	line-height : 1.25;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 58px 0px 0px 0px;
+}
+p.FM-HouseLogo {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 110px 0px 0px 0px;
+}
+p.FM-HouseLogo2 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 10px 0px 0px 0px;
+}
+
+
+p.Contents-first {
+	font-family : "Adobe Garamond Regular", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 1em;
+page-break-before: always;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.67;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 20px 0px;
+}
+p.Contents {
+	font-family : "Adobe Garamond Regular", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 1em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.67;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 20px 0px;
+}
+p.Thanks {
+	font-family : "Adobe Garamond Bold", serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 1.17em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.43;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 36px 0px 20px 0px;
+}
+p.SpecialOffers {
+	font-family : "Adobe Garamond Regular", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 1em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.67;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 20px 0px;
+}
+p.Button {
+	font-family : "Adobe Garamond Regular", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 1em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 10px 0px 20px 0px;
+}
+p.VisitUs {
+	font-family : "Adobe Garamond Regular", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 1em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.67;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 20px 0px;
+}
+p.EmailUpdates {
+	font-family : "Adobe Garamond Regular", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 1em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.67;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 20px 0px;
+}
+p.Chapter-Body-Front-Title-No-Num-1 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-4 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px;
+}
+li.Chapter-Body-NL-first-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 17px;
+	margin-bottom : 0px;
+}
+li.Chapter-Body-NL-mid-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 0px;
+}
+li.Chapter-Body-NL-last-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 17px;
+}
+p.Chapter-Body-First-No-Ch-Num-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 195px 0px 0px 0px;
+}
+p.Chapter-Body-First-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 124px 0px 0px 0px;
+}
+p.Chapter-Body-5 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px;
+}
+p.Chapter-Body-Front-Ch-Num-3 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 2.33em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 0.86;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 51px 0px;
+}
+p.Chapter-Body-Front-Title-3 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Art-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 24px 0px;
+}
+p.Chapter-Body-Notes-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.75em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.33;
+	text-align : justify;
+	color : #000000;
+	text-indent : -6px;
+	margin : 0px 0px 0px 6px;
+}
+p.Chapter-Body-TextBreak-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 11px 0px 6px 0px;
+}
+p.Chapter-Body-TextBreak-NoPara-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-NoPara-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-A-1 {
+	font-family : "Trade Gothic LT Pro", sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.94em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.47;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 12px 0px 5px 0px;
+}
+p.Caption-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 18px 24px 18px;
+}
+p.Chapter-Body-Art-with-caption-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 24px 0px 3px 0px;
+}
+p.Caption-middle {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 12px 0px;
+}
+p.Chapter-Body-Art-with-caption-mid {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 3px 0px;
+}
+p.Chapter-Body-First-4 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 124px 0px 0px 0px;
+}
+p.Chapter-Body-6 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px;
+}
+p.Chapter-Body-Front-Ch-Num-4 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 2.33em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 0.86;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 51px 0px;
+}
+p.Chapter-Body-Front-Title-4 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Art-4 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 24px 0px;
+}
+p.Chapter-Body-TextBreak-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 11px 0px 6px 0px;
+}
+p.Chapter-Body-TextBreak-NoPara-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Ext-only-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 17px 18px;
+}
+p.Chapter-Body-Ext-first-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 17px 18px 0px 18px;
+}
+p.Chapter-Body-Ext-last-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px 18px 17px 18px;
+}
+p.Chapter-Body-UL-first {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 25px 0px 0px 18px;
+}
+p.Chapter-Body-UL-last {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 8px 0px 25px 18px;
+}
+p.Chapter-Body-First-5 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 124px 0px 0px 0px;
+}
+p.Chapter-Body-7 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px;
+}
+p.Chapter-Body-Front-Ch-Num-5 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 2.33em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 0.86;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 51px 0px;
+}
+p.Chapter-Body-Front-Title-5 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Art-5 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 24px 0px;
+}
+p.Chapter-Body-TextBreak-4 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 11px 0px 6px 0px;
+}
+p.Chapter-Body-TextBreak-NoPara-4 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Ext-only-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 17px 18px;
+}
+p.Chapter-Body-NoPara-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+li.Chapter-Body-BL-only {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 17px;
+	margin-bottom : 17px;
+}
+li.Chapter-Body-BL-first-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 17px;
+	margin-bottom : 0px;
+}
+li.Chapter-Body-BL-last-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 17px;
+}
+li.Chapter-Body-BL-mid-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 0px;
+}
+p.Rear-Title-2 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz2zz-NoPara {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-A {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 14px 0px 3px 0px;
+}
+p.Rear-Notes-zz2zz {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz3zz-NoPara {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz3zz {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz4zz-NoPara {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz4zz {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz5zz-NoPara {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz5zz {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz6zz-NoPara {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz6zz {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz7zz-NoPara {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz7zz {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz8zz-NoPara {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz8zz {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz9zz-NoPara {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz9zz {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz9zz-copy {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Rear-Notes-zz1zz-NoPara-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.75em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.22;
+	text-align : justify;
+	color : #000000;
+	text-indent : -20px;
+	margin : 0px 0px 0px 20px;
+}
+p.Chapter-Body-First-6 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 124px 0px 0px 0px;
+}
+p.Chapter-Body-8 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px;
+}
+li.Chapter-Body-NL-first-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 17px;
+	margin-bottom : 0px;
+}
+li.Chapter-Body-NL-mid-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 0px;
+}
+li.Chapter-Body-NL-last-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 17px;
+}
+p.Chapter-Body-Front-Ch-Num-6 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 2.33em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 0.86;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 51px 0px;
+}
+p.Chapter-Body-Front-Title-6 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Art-6 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 24px 0px;
+}
+p.Chapter-Body-Notes-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.75em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.33;
+	text-align : justify;
+	color : #000000;
+	text-indent : -6px;
+	margin : 0px 0px 0px 6px;
+}
+p.Chapter-Body-TextBreak-5 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 11px 0px 6px 0px;
+}
+p.Chapter-Body-TextBreak-NoPara-5 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Ext-only-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 17px 18px;
+}
+li.Chapter-Body-BL-first-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 17px;
+	margin-bottom : 0px;
+}
+li.Chapter-Body-BL-last-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 17px;
+}
+li.Chapter-Body-BL-mid-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 0px;
+}
+p.Chapter-Body-A-2 {
+	font-family : "Trade Gothic LT Pro", sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.94em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.47;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 12px 0px 5px 0px;
+}
+p.Caption-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 18px 24px 18px;
+}
+p.Chapter-Body-Art-with-caption-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 24px 0px 3px 0px;
+}
+p.Chapter-Body-First-7 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 124px 0px 0px 0px;
+}
+p.Chapter-Body-9 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px;
+}
+p.Chapter-Body-Front-Ch-Num-7 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 2.33em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 0.86;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 51px 0px;
+}
+p.Chapter-Body-Front-Title-7 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Art-7 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 24px 0px;
+}
+p.Chapter-Body-TextBreak-6 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 11px 0px 6px 0px;
+}
+p.Chapter-Body-TextBreak-NoPara-6 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Screenplay-Title {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	text-transform : uppercase;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 17px 0px 0px 0px;
+}
+p.Chapter-Body-Screenplay-A {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Screenplay-NoPara {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 8px 18px;
+}
+p.Chapter-Body-Screenplay-Dlg-only {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : -18px;
+	margin : 0px 18px 0px 36px;
+}
+p.Chapter-Body-Screenplay {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 8px 18px;
+}
+p.Chapter-Body-Ext-first-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 17px 18px 0px 18px;
+}
+p.Chapter-Body-Ext-last-2 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px 18px 17px 18px;
+}
+p.Chapter-Body-NoPara-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Caption-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 18px 24px 18px;
+}
+p.Chapter-Body-Art-with-caption-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 24px 0px 3px 0px;
+}
+p.Chapter-Body-Screenplay-Dlg-only-last {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : justify;
+	color : #000000;
+	text-indent : -18px;
+	margin : 0px 18px 17px 36px;
+}
+p.Chapter-Body-copy {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px;
+}
+p.Thanks-1 {
+	font-family : "Adobe Garamond Bold", serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size : 1.17em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.43;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 36px 0px 20px 0px;
+}
+p.SpecialOffers-1 {
+	font-family : "Adobe Garamond Regular", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 1em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.67;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 20px 0px;
+}
+p.Button-1 {
+	font-family : "Adobe Garamond Regular", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 1em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 10px 0px 20px 0px;
+}
+p.VisitUs-1 {
+	font-family : "Adobe Garamond Regular", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 1em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.67;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 20px 0px;
+}
+p.EmailUpdates-1 {
+	font-family : "Adobe Garamond Regular", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 1em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.67;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 20px 0px;
+}
+p.Chapter-Body-First-8 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 124px 0px 0px 0px;
+}
+p.Chapter-Body-10 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px;
+}
+li.Chapter-Body-NL-first-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 17px;
+	margin-bottom : 0px;
+}
+li.Chapter-Body-NL-mid-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 0px;
+}
+li.Chapter-Body-NL-last-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 17px;
+}
+p.Chapter-Body-Front-Ch-Num-8 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 2.33em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 0.86;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 51px 0px;
+}
+p.Chapter-Body-Front-Title-8 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Art-8 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 24px 0px;
+}
+p.Chapter-Body-Notes-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.75em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.33;
+	text-align : justify;
+	color : #000000;
+	text-indent : -6px;
+	margin : 0px 0px 0px 6px;
+}
+p.Chapter-Body-TextBreak-7 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 11px 0px 6px 0px;
+}
+p.Chapter-Body-TextBreak-NoPara-7 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Ext-only-4 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 17px 18px;
+}
+p.Chapter-Body-Ext-first-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 17px 18px 0px 18px;
+}
+p.Chapter-Body-Ext-last-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px 18px 17px 18px;
+}
+li.Chapter-Body-BL-first-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 17px;
+	margin-bottom : 0px;
+}
+li.Chapter-Body-BL-last-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 17px;
+}
+li.Chapter-Body-BL-mid-3 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 0px;
+}
+p.Chapter-Body-A-3 {
+	font-family : "Trade Gothic LT Pro", sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.94em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.47;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 12px 0px 5px 0px;
+}
+p.Caption-4 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 18px 24px 18px;
+}
+p.Chapter-Body-Art-with-caption-4 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 24px 0px 3px 0px;
+}
+p.No-paragraph-style-1 {
+	font-family : "Minion Pro", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 1em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-First-9 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 124px 0px 0px 0px;
+}
+p.Chapter-Body-11 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 18px;
+	margin : 0px;
+}
+li.Chapter-Body-NL-first-4 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 17px;
+	margin-bottom : 0px;
+}
+li.Chapter-Body-NL-mid-4 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 0px;
+}
+li.Chapter-Body-NL-last-4 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	margin-right : 0px;
+	margin-top : 0px;
+	margin-bottom : 17px;
+}
+p.Chapter-Body-Front-Ch-Num-9 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 2.33em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 0.86;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 51px 0px;
+}
+p.Chapter-Body-Front-Title-9 {
+	font-family : "ITC New Baskerville Std SmBd", serif;
+	font-weight : 600;
+	font-style : normal;
+	font-size : 1.67em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Art-9 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 24px 0px;
+}
+p.Chapter-Body-Notes-4 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.75em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.33;
+	text-align : justify;
+	color : #000000;
+	text-indent : -6px;
+	margin : 0px 0px 0px 6px;
+}
+p.Chapter-Body-TextBreak-8 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 11px 0px 6px 0px;
+}
+p.Chapter-Body-TextBreak-NoPara-8 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-Ext-Alt-only-only-1 {
+	font-family : "Courier Std", serif;
+	font-weight : 500;
+	font-style : normal;
+	font-size : 0.79em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.74;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 8px 0px;
+}
+p.Chapter-Body-Ext-only-5 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.65;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 17px 18px;
+}
+p.Chapter-Body-NoPara-4 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px;
+}
+p.Chapter-Body-UL-first-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 25px 0px 0px 18px;
+}
+p.Chapter-Body-UL-last-1 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 8px 0px 25px 18px;
+}
+p.Chapter-Body-A-4 {
+	font-family : "Trade Gothic LT Pro", sans-serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.94em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.47;
+	text-align : left;
+	color : #000000;
+	text-indent : 0px;
+	margin : 12px 0px 5px 0px;
+}
+p.Caption-5 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : italic;
+	font-size : 0.83em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.3;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 18px 24px 18px;
+}
+p.Chapter-Body-Art-with-caption-5 {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.2;
+	text-align : center;
+	color : #000000;
+	text-indent : 0px;
+	margin : 24px 0px 3px 0px;
+}
+p.Chapter-Body-UL-mid {
+	font-family : "ITC New Baskerville Std", serif;
+	font-weight : normal;
+	font-style : normal;
+	font-size : 0.92em;
+	text-decoration : none;
+	font-variant : normal;
+	line-height : 1.5;
+	text-align : justify;
+	color : #000000;
+	text-indent : 0px;
+	margin : 0px 0px 0px 18px;
+}
+p.para-style-override-1 {
+	text-align : center;
+	margin-top : 0em;
+	margin-bottom : 0em;
+}
+p.para-style-override-2 {
+	margin-top : 72px;
+}
+p.para-style-override-3 {
+	margin-top : 17px;
+}
+p.para-style-override-4, li.para-style-override-4 {
+	margin-top : 25px;
+}
+p.para-style-override-5, li.para-style-override-5 {
+	margin-top : 21px;
+}
+p.para-style-override-6 {
+	margin-bottom : 17px;
+	margin-top : 17px;
+}
+p.para-style-override-7 {
+	margin-bottom : 26px;
+}
+li.para-style-override-8 {
+	margin-bottom : 21px;
+}
+p.para-style-override-9 {
+	margin-bottom : 25px;
+	margin-top : 25px;
+}
+p.para-style-override-10 {
+	margin-top : 19px;
+}
+p.para-style-override-11 {
+	margin-top : 14px;
+}
+p.para-style-override-12 {
+	margin-bottom : 38px;
+}
+p.para-style-override-13 {
+	margin-bottom : 28px;
+	margin-top : 27px;
+}
+li.para-style-override-14 {
+	margin-bottom : 25px;
+}
+p.para-style-override-15 {
+	margin-bottom : 26px;
+	margin-top : 26px;
+}
+p.para-style-override-16 {
+	margin-top : 26px;
+}
+p.para-style-override-17 {
+	margin-bottom : 27px;
+}
+p.para-style-override-18 {
+	margin-bottom : 22px;
+	margin-top : 22px;
+}
+p.para-style-override-19 {
+	margin-bottom : 21px;
+	margin-top : 21px;
+}
+p.para-style-override-20 {
+	margin-bottom : 15px;
+	margin-top : 19px;
+}
+p.para-style-override-21 {
+	margin-bottom : 0px;
+}
+p.para-style-override-22 {
+	margin-top : 0px;
+}
+p.para-style-override-23 {
+	margin-bottom : 6px;
+}
+p.para-style-override-24 {
+	margin-bottom : 26px;
+	margin-top : 27px;
+}
+p.para-style-override-25 {
+	margin-bottom : 12px;
+	margin-top : 37px;
+}
+p.para-style-override-26 {
+	margin-bottom : 28px;
+}
+p.para-style-override-27 {
+	margin-bottom : 4px;
+}
+p.para-style-override-28 {
+	margin-top : 29px;
+}
+p.para-style-override-29 {
+	margin-left : 0px;
+	margin-top : 72px;
+	text-indent : 0px;
+}
+p.para-style-override-30 {
+	margin-top : 22px;
+}
+p.para-style-override-31 {
+	margin-bottom : 12px;
+	margin-left : 0px;
+	margin-top : 72px;
+	text-indent : 0px;
+}
+p.para-style-override-32 {
+	margin-top : 36px;
+	text-align : center;
+}
+p.para-style-override-33 {
+	margin-bottom : 36px;
+	margin-top : 3px;
+	text-align : center;
+}
+p.para-style-override-34 {
+	margin-top : 12px;
+}
+p.para-style-override-35 {
+	margin-top : 17px;
+	text-align : center;
+}
+div.Contents {
+}
+div.cip {
+}
+div.cip-1 {
+}
+div.Contents-1 {
+}
+div.ChapOpener {
+}
+div.Full-Page-Art {
+}
+div.ChapOpener-1 {
+}
+div.Full-Page-Art-1 {
+}
+div.ChapOpener-2 {
+}
+div.Contents-2 {
+}
+div.ChapOpener-3 {
+}
+div.Full-Page-Art-2 {
+}
+div.Contents-3 {
+}
+div.Contents-4 {
+}
+div.Basic-Text-Frame {
+}
+div.FT {
+}
+div.Contents-5 {
+}
+div.ChapOpener-4 {
+}
+div.Full-Page-Art-3 {
+}
+div.ChapOpener-5 {
+}
+div.Full-Page-Art-4 {
+}
+div.ChapOpener-6 {
+}
+div.Full-Page-Art-5 {
+}
+div.Contents-6 {
+}
+div.ChapOpener-7 {
+}
+div.Full-Page-Art-6 {
+}
+div.ChapOpener-8 {
+}
+div.ChapOpener-9 {
+}
+div.Full-Page-Art-7 {
+}
+div.ChapOpener-10 {
+}
+div.Full-Page-Art-8 {
+}

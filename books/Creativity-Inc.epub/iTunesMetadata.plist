@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BKAllocatedSize</key>
+	<integer>11251712</integer>
+	<key>BKDisplayName</key>
+	<string>Creativity, Inc_ Overcoming the Unseen Forces That Stand in the Way of True Inspiration by Ed Catmull</string>
+	<key>BKGenerationCount</key>
+	<integer>2</integer>
+	<key>BKInsertionDate</key>
+	<integer>722080553</integer>
+	<key>artistName</key>
+	<string>Ed Catmull</string>
+	<key>book-info</key>
+	<dict>
+		<key>cover-image-hash</key>
+		<string>DD7B06DA34463C82DBF1BE1A9E7F263B</string>
+		<key>cover-image-path</key>
+		<string>OEBPS/images/Catm_9780679644507_epub_cvi_r1.jpg</string>
+		<key>mime-type</key>
+		<string>application/epub+zip</string>
+		<key>package-file-hash</key>
+		<string>24DABA1E3F3B88F807393648DE0B0162</string>
+		<key>publisher-unique-id</key>
+		<string>978-0-679-64450-7</string>
+		<key>unique-id</key>
+		<integer>2013216084080702581</integer>
+		<key>update-level</key>
+		<integer>2</integer>
+	</dict>
+	<key>bookDescription</key>
+	<string>&lt;b&gt;&lt;i&gt;NEW YORK TIMES &lt;/i&gt;BESTSELLER&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;i&gt;"What does it mean to manage well?"&lt;/i&gt;&lt;br&gt; &lt;br&gt; &lt;b&gt;From Ed Catmull, co-founder (with Steve Jobs and John Lasseter) of Pixar Animation Studios, comes an incisive book about creativity in business--sure to appeal to readers of Daniel Pink, Tom Peters, and Chip and Dan Heath. &lt;i&gt;Fast Company &lt;/i&gt;raves that &lt;i&gt;Creativity, Inc. &lt;/i&gt;"just might be the most thoughtful management book ever."&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;i&gt;Creativity, Inc.&lt;/i&gt; is a book for managers who want to lead their employees to new heights, a manual for anyone who strives for originality, and the first-ever, all-access trip into the nerve center of Pixar Animation--into the meetings, postmortems, and "Braintrust" sessions where some of the most successful films in history are made. It is, at heart, a book about how to build a creative culture--but it is also, as Pixar co-founder and president Ed Catmull writes, "an expression of the ideas that I believe make the best in us...</string>
+	<key>isPreview</key>
+	<false/>
+	<key>itemName</key>
+	<string>Creativity, Inc.</string>
+	<key>updateDate</key>
+	<date>2023-11-19T09:55:53Z</date>
+</dict>
+</plist>
