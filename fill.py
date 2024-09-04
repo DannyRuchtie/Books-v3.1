@@ -7,6 +7,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 import chromadb
 import base64
 import mimetypes
+import shutil
 
 # Suppress specific warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="ebooklib.epub")
@@ -30,31 +31,33 @@ def extract_book_info(epub_path):
         "publication_date": book.get_metadata('DC', 'date')[0][0] if book.get_metadata('DC', 'date') else "Unknown",
         "language": book.get_metadata('DC', 'language')[0][0] if book.get_metadata('DC', 'language') else "Unknown",
         "identifier": book.get_metadata('DC', 'identifier')[0][0] if book.get_metadata('DC', 'identifier') else "Unknown",
-        "subject": book.get_metadata('DC', 'subject')[0][0] if book.get_metadata('DC', 'subject') else "Unknown",
+        "subject": book.get_metadata('DC', 'subject')[0][0] if book.get_metadata('DC', 'subject') else None,
     }
     
     # Find the cover image
     cover_item = None
     for item in book.get_items():
-        if item.get_type() == ebooklib.ITEM_COVER:
-            cover_item = item
-            break
-
+        if item.get_type() == ebooklib.ITEM_COVER or item.get_type() == ebooklib.ITEM_IMAGE:
+            if 'cover' in item.get_name().lower():
+                cover_item = item
+                break
+    
+    cover_path = None
     if cover_item:
-        cover_image = cover_item.get_content()
-        mime_type = mimetypes.guess_type(f"dummy{mimetypes.guess_extension(cover_item.media_type)}")
-        cover_extension = mimetypes.guess_extension(mime_type[0]) if mime_type[0] else '.jpg'
-    else:
-        cover_image = None
-        cover_extension = None
-
+        covers_dir = "covers"
+        os.makedirs(covers_dir, exist_ok=True)
+        cover_filename = f"{metadata['identifier']}{os.path.splitext(cover_item.get_name())[1]}"
+        cover_path = os.path.join(covers_dir, cover_filename)
+        with open(cover_path, 'wb') as f:
+            f.write(cover_item.get_content())
+    
     # Extract content
     content = []
     for item in book.get_items():
         if item.get_type() == ebooklib.ITEM_DOCUMENT:
             content.append(item.get_content())
     
-    return metadata, cover_image, cover_extension, content
+    return metadata, cover_path, content
 
 # Loading the document
 def epub_to_text(epub_path):
@@ -77,27 +80,19 @@ except Exception as e:
 
 # Extract book info
 print("\n--- Extracting book metadata and content ---")
-book_metadata, cover_image, cover_extension, content = extract_book_info(EPUB_FILE_PATH)
+book_metadata, cover_path, content = extract_book_info(EPUB_FILE_PATH)
 
 print("Book Metadata:")
 for key, value in book_metadata.items():
     print(f"  {key}: {value if value is not None else 'Not available'}")
 
-print(f"Cover image extracted: {'Yes' if cover_image else 'No'}")
-print(f"Number of documents extracted: {len(content)}")
-
-# Save cover image
-cover_path = None
-if cover_image:
-    covers_dir = "covers"
-    os.makedirs(covers_dir, exist_ok=True)
-    cover_filename = f"{book_metadata['identifier']}{cover_extension}"
-    cover_path = os.path.join(covers_dir, cover_filename)
-    with open(cover_path, "wb") as f:
-        f.write(cover_image)
+print(f"Cover image extracted: {'Yes' if cover_path else 'No'}")
+if cover_path:
     print(f"Cover image saved to: {cover_path}")
 else:
     print("No cover image found")
+
+print(f"Number of documents extracted: {len(content)}")
 
 # Add book metadata to ChromaDB
 try:
