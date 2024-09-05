@@ -392,6 +392,38 @@ async def chat(request: ChatRequest):
 covers_dir = os.path.join(os.path.dirname(__file__), "covers")
 app.mount("/covers", StaticFiles(directory=covers_dir), name="covers")
 
+@app.delete("/books/{book_id}")
+async def delete_book(book_id: str, user_id: str = Depends(get_user_id)):
+    try:
+        # Query to find the book
+        results = collection.query(
+            query_texts=[""],
+            where={"$and": [{"type": "book_metadata"}, {"user_id": user_id}]},
+            ids=[book_id],
+            include=["metadatas"]
+        )
+
+        # Check if the book exists and belongs to the user
+        if not results['ids']:
+            raise HTTPException(status_code=404, detail="Book not found or does not belong to the user")
+
+        # Delete the book
+        collection.delete(ids=[book_id])
+
+        # Delete associated chunks (if any)
+        chunk_results = collection.query(
+            query_texts=[""],
+            where={"$and": [{"type": "book_chunk"}, {"book_id": book_id}]},
+            include=["metadatas"]
+        )
+        if chunk_results['ids']:
+            collection.delete(ids=chunk_results['ids'])
+
+        return {"message": "Book and associated chunks deleted successfully"}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
