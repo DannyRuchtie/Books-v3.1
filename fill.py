@@ -14,7 +14,7 @@ warnings.filterwarnings("ignore", category=UserWarning, module="ebooklib.epub")
 warnings.filterwarnings("ignore", category=FutureWarning, module="ebooklib.epub")
 
 # Setting the environment
-EPUB_FILE_PATH = os.path.join("books", "jony-ive.epub")
+EPUB_FILE_PATH = os.path.join("books", "Creativity-Inc.epub")
 CHROMA_PATH = os.path.join("chroma_db")
 
 chroma_client = chromadb.PersistentClient(path=CHROMA_PATH)
@@ -24,29 +24,56 @@ collection = chroma_client.get_or_create_collection(name="books")
 def extract_book_info(epub_path):
     book = epub.read_epub(epub_path, options={'ignore_ncx': True})
     
-    metadata = {
-        "title": book.get_metadata('DC', 'title')[0][0] if book.get_metadata('DC', 'title') else "Unknown",
-        "author": book.get_metadata('DC', 'creator')[0][0] if book.get_metadata('DC', 'creator') else "Unknown",
-        "publisher": book.get_metadata('DC', 'publisher')[0][0] if book.get_metadata('DC', 'publisher') else "Unknown",
-        "publication_date": book.get_metadata('DC', 'date')[0][0] if book.get_metadata('DC', 'date') else "Unknown",
-        "language": book.get_metadata('DC', 'language')[0][0] if book.get_metadata('DC', 'language') else "Unknown",
-        "identifier": book.get_metadata('DC', 'identifier')[0][0] if book.get_metadata('DC', 'identifier') else "Unknown",
-        "subject": book.get_metadata('DC', 'subject')[0][0] if book.get_metadata('DC', 'subject') else None,
-    }
+    metadata = {}
+    for namespace in book.metadata:
+        for name, values in book.metadata[namespace].items():
+            metadata[name] = values[0] if values else None
     
     # Find the cover image
     cover_item = None
-    for item in book.get_items():
-        if item.get_type() == ebooklib.ITEM_COVER or item.get_type() == ebooklib.ITEM_IMAGE:
-            if 'cover' in item.get_name().lower():
-                cover_item = item
-                break
-    
     cover_path = None
+    
+    # Method 1: Check for cover in metadata
+    cover_id = metadata.get('cover')
+    
+    if cover_id:
+        cover_item = book.get_item_with_id(cover_id)
+    
+    # Method 2: Check for 'cover' in item name
+    if not cover_item:
+        for item in book.get_items():
+            if item.get_type() == ebooklib.ITEM_IMAGE:
+                if item.get_name().lower().startswith('cover'):
+                    cover_item = item
+                    break
+    
+    # Method 3: Check for 'cover' in item name or id
+    if not cover_item:
+        for item in book.get_items():
+            if item.get_type() == ebooklib.ITEM_IMAGE:
+                if 'cover' in item.get_name().lower() or 'cover' in item.id.lower():
+                    cover_item = item
+                    break
+    
+    # Method 4: Use the first image as cover if no other method worked
+    if not cover_item:
+        images = [item for item in book.get_items() if item.get_type() == ebooklib.ITEM_IMAGE]
+        if images:
+            cover_item = images[0]
+    
     if cover_item:
         covers_dir = "covers"
         os.makedirs(covers_dir, exist_ok=True)
-        cover_filename = f"{metadata['identifier']}{os.path.splitext(cover_item.get_name())[1]}"
+        
+        # Extract the identifier properly
+        identifier = metadata.get('identifier', 'unknown')
+        if isinstance(identifier, tuple):
+            identifier = identifier[0]  # Use the first element if it's a tuple
+        
+        # Ensure the identifier is a valid filename
+        identifier = "".join(c for c in identifier if c.isalnum() or c in ('-', '_'))
+        
+        cover_filename = f"{identifier}{os.path.splitext(cover_item.get_name())[1]}"
         cover_path = os.path.join(covers_dir, cover_filename)
         with open(cover_path, 'wb') as f:
             f.write(cover_item.get_content())
