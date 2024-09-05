@@ -396,25 +396,21 @@ app.mount("/covers", StaticFiles(directory=covers_dir), name="covers")
 async def delete_book(book_id: str, user_id: str = Depends(get_user_id)):
     try:
         # Query to find the book
-        results = collection.query(
-            query_texts=[""],
-            where={"$and": [{"type": "book_metadata"}, {"user_id": user_id}]},
+        results = collection.get(
             ids=[book_id],
-            include=["metadatas"]
+            where={"$and": [{"type": "book_metadata"}, {"user_id": user_id}]}
         )
 
         # Check if the book exists and belongs to the user
         if not results['ids']:
             raise HTTPException(status_code=404, detail="Book not found or does not belong to the user")
 
-        # Delete the book
+        # Delete the book metadata
         collection.delete(ids=[book_id])
 
         # Delete associated chunks (if any)
-        chunk_results = collection.query(
-            query_texts=[""],
-            where={"$and": [{"type": "book_chunk"}, {"book_id": book_id}]},
-            include=["metadatas"]
+        chunk_results = collection.get(
+            where={"$and": [{"book_id": book_id}, {"user_id": user_id}]}
         )
         if chunk_results['ids']:
             collection.delete(ids=chunk_results['ids'])
