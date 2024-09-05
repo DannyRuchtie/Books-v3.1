@@ -88,27 +88,23 @@ async def list_books(user_id: str = Depends(get_user_id)):
     print(f"IDs: {results['ids']}")
     print(f"Metadatas: {results['metadatas']}")
 
-    print("DEBUG: Detailed results structure:")
-    for id, metadata in zip(results['ids'], results['metadatas']):
-        print(f"ID: {id}")
-        print(f"Metadata: {metadata}")
-        print("---")
-
     books = []
     for id_list, metadata_list in zip(results['ids'], results['metadatas']):
-        # Ensure id_list and metadata_list are not empty
-        if id_list and metadata_list:
-            book_id = str(id_list[0]) if isinstance(id_list, list) else str(id_list)  # Convert to string
-            metadata = metadata_list[0] if isinstance(metadata_list, list) else metadata_list
+        # Process each book in the results
+        for i in range(len(id_list)):
+            book_id = str(id_list[i])
+            metadata = metadata_list[i]
             books.append(Book(
                 id=book_id,
                 identifier=metadata.get('identifier', 'Unknown'),
                 title=metadata.get('title', 'Unknown Title'),
                 cover_url=metadata.get('cover_url', 'No cover')
             ))
-        else:
-            print(f"WARNING: Empty id or metadata for a book")
     
+    print(f"DEBUG: Processed {len(books)} books")
+    for book in books:
+        print(f"Book: {book.title}")
+
     return books
 
 def extract_book_info(epub_path):
