@@ -102,14 +102,28 @@ try:
     cleaned_metadata["type"] = "book_metadata"
     cleaned_metadata["cover_path"] = cover_path if cover_path else "No cover"
     
+    metadata_id = f"metadata_{book_metadata['identifier']}"
+    
     collection.upsert(
         documents=[str(cleaned_metadata)],
         metadatas=[cleaned_metadata],
-        ids=[f"metadata_{book_metadata['identifier']}"]
+        ids=[metadata_id]
     )
-    print("Book metadata added to ChromaDB successfully.")
+    print(f"Book metadata added to ChromaDB successfully with ID: {metadata_id}")
+    print(f"Metadata content: {cleaned_metadata}")
 except Exception as e:
     print(f"Failed to add book metadata to ChromaDB: {e}")
+
+# Verify metadata was added
+try:
+    results = collection.get(ids=[metadata_id])
+    if results['ids']:
+        print(f"Successfully retrieved metadata with ID: {metadata_id}")
+        print(f"Retrieved metadata: {results['metadatas'][0]}")
+    else:
+        print(f"Failed to retrieve metadata with ID: {metadata_id}")
+except Exception as e:
+    print(f"Error when trying to retrieve metadata: {e}")
 
 # Combine all content into a single string
 raw_text = "\n".join([BeautifulSoup(doc, 'html.parser').get_text() for doc in content])
@@ -156,3 +170,10 @@ try:
     print("Upsert complete.")
 except Exception as e:
     print(f"Failed to upsert into ChromaDB: {e}")
+
+# After all upserts are complete
+try:
+    total_items = collection.count()
+    print(f"Total items in collection after upserts: {total_items}")
+except Exception as e:
+    print(f"Error when trying to count items in collection: {e}")
