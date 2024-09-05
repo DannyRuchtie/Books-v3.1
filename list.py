@@ -1,45 +1,43 @@
 import chromadb
 import os
-import uuid
 
 # Setting the environment
 CHROMA_PATH = os.path.join("chroma_db")
+USER_ID = "79c8d98e-b923-48f4-b2bd-0feeb4285419"  # Hard-coded user_id
 
 # Initialize ChromaDB client
 chroma_client = chromadb.PersistentClient(path=CHROMA_PATH)
 collection = chroma_client.get_or_create_collection(name="books")
 
-# Function to generate a default user_id (same as in upload.py)
-def generate_default_user_id():
-    return str(uuid.uuid4())
 
-def get_all_books_info(user_id=None):
-    if user_id is None:
-        user_id = generate_default_user_id()
-        print(f"No user_id provided. Using default: {user_id}")
 
+def get_all_books_info():
+    # print(f"Querying books for user_id: {USER_ID}")
+    
     # Query for all metadata entries for the specified user
     results = collection.query(
         query_texts=[""],
-        where={"$and": [{"type": "book_metadata"}, {"user_id": str(user_id)}]},
-        include=["metadatas", "documents"]
+        where={"$and": [{"type": "book_metadata"}, {"user_id": USER_ID}]},
+        include=["metadatas"]
     )
+    
+    # print(f"DEBUG: Query results: {results}")
 
     books_info = []
-    for id, metadata_list in zip(results['ids'], results['metadatas']):
+    for id, metadata in zip(results['ids'], results['metadatas']):
         # Ensure metadata is a dictionary
-        metadata = metadata_list[0] if metadata_list else {}
+        metadata = metadata[0] if metadata else {}
+        
+        # print(f"\nDEBUG: Processing book with ID: {id}")
+        # print(f"DEBUG: Metadata: {metadata}")
         
         title = metadata.get('title', 'Unknown Title')
-        cover_path = metadata.get('cover_path', 'No cover')
+        cover_url = metadata.get('cover_url', 'No cover')
         identifier = metadata.get('identifier', 'Unknown')
         
-        # Convert local file path to URL (you may need to adjust this based on your server setup)
-        cover_url = f"/covers/{os.path.basename(cover_path)}" if cover_path != 'No cover' else None
-        
         books_info.append({
-            'id': id,  # This is the database key
-            'identifier': identifier,  # This is the book's ISBN or other identifier
+            'id': id,
+            'identifier': identifier,
             'title': title,
             'cover_url': cover_url
         })
@@ -47,15 +45,17 @@ def get_all_books_info(user_id=None):
     return books_info
 
 if __name__ == "__main__":
-    # For development/testing, use a default user_id
-    default_user_id = generate_default_user_id()
-    print(f"Using default user_id for testing: {default_user_id}")
+    # print("\nDEBUG: Querying all items in the collection")
+    all_items = collection.get(include=["metadatas"])
+    # print(f"Total items: {len(all_items['ids'])}")
+    # for id, metadata in zip(all_items['ids'], all_items['metadatas']):
+    #     print(f"ID: {id}")
+    #     # print(f"Metadata: {metadata}")
+    #     print("---")
+
+    books = get_all_books_info()
     
-    # In a real application, you would get the user_id from authentication
-    # For now, we'll use the default one
-    books = get_all_books_info(default_user_id)
-    
-    print(f"Found {len(books)} books for user {default_user_id}:")
+    # print(f"\nFound {len(books)} books for user {USER_ID}:")
     for book in books:
         print(f"Database ID: {book['id']}")
         print(f"Title: {book['title']}")
@@ -65,5 +65,3 @@ if __name__ == "__main__":
 
     if not books:
         print("No books found for this user.")
-
-    print("\nTo test with books, run upload.py first, then use the user_id it generates here.")

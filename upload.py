@@ -5,10 +5,7 @@ from bs4 import BeautifulSoup
 import os
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import chromadb
-import base64
-import mimetypes
-import shutil
-import uuid  # Import uuid for generating default user_id
+import re
 
 # Suppress specific warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="ebooklib.epub")
@@ -17,207 +14,160 @@ warnings.filterwarnings("ignore", category=FutureWarning, module="ebooklib.epub"
 # Setting the environment
 EPUB_FILE_PATH = os.path.join("books", "Creativity-Inc.epub")
 CHROMA_PATH = os.path.join("chroma_db")
+USER_ID = "79c8d98e-b923-48f4-b2bd-0feeb4285419"  # Hard-coded user_id
 
 chroma_client = chromadb.PersistentClient(path=CHROMA_PATH)
 collection = chroma_client.get_or_create_collection(name="books")
 
-# Function to generate a default user_id
-def generate_default_user_id():
-    return str(uuid.uuid4())
+def extract_book_info(epub_path):
+    book = epub.read_epub(epub_path, options={'ignore_ncx': True})
+    
+    metadata = {}
+    for namespace in book.metadata:
+        for name, values in book.metadata[namespace].items():
+            metadata[name] = values[0] if values else None
+    
+    cover_item = None
+    cover_path = None
+    
+    # Find cover image (simplified)
+    for item in book.get_items():
+        if item.get_type() == ebooklib.ITEM_IMAGE:
+            if 'cover' in item.get_name().lower() or 'cover' in item.id.lower():
+                cover_item = item
+                break
+    
+    if cover_item:
+        covers_dir = "covers"
+        os.makedirs(covers_dir, exist_ok=True)
+        identifier = metadata.get('identifier', 'unknown')
+        
+        # Handle the case where identifier might be a dictionary
+        if isinstance(identifier, dict):
+            identifier = str(identifier.get('id', 'unknown'))
+        elif identifier is None:
+            identifier = 'unknown'
+        else:
+            identifier = str(identifier)
+        
+        # Now that identifier is guaranteed to be a string, we can process it
+        identifier = "".join(c for c in identifier if c.isalnum() or c in ('-', '_'))
+        cover_filename = f"{identifier}{os.path.splitext(cover_item.get_name())[1]}"
+        cover_path = os.path.join(covers_dir, cover_filename)
+        with open(cover_path, 'wb') as f:
+            f.write(cover_item.get_content())
+    
+    content = [item.get_content() for item in book.get_items() if item.get_type() == ebooklib.ITEM_DOCUMENT]
+    
+    return metadata, cover_path, content
 
-# Main function to process and upload a book
-def process_and_upload_book(epub_path, user_id=None):
-    if user_id is None:
-        user_id = generate_default_user_id()
-        print(f"No user_id provided. Using default: {user_id}")
+def clean_html(html_string):
+    # Remove HTML tags
+    soup = BeautifulSoup(html_string, "html.parser")
+    text = soup.get_text(separator=" ", strip=True)
+    # Replace multiple spaces with a single space
+    text = re.sub(r'\s+', ' ', text)
+    return text
 
-    # New function to extract metadata and cover
-    def extract_book_info(epub_path):
-        book = epub.read_epub(epub_path, options={'ignore_ncx': True})
-        
-        metadata = {}
-        for namespace in book.metadata:
-            for name, values in book.metadata[namespace].items():
-                metadata[name] = values[0] if values else None
-        
-        # Find the cover image
-        cover_item = None
-        cover_path = None
-        
-        # Method 1: Check for cover in metadata
-        cover_id = metadata.get('cover')
-        
-        if cover_id:
-            cover_item = book.get_item_with_id(cover_id)
-        
-        # Method 2: Check for 'cover' in item name
-        if not cover_item:
-            for item in book.get_items():
-                if item.get_type() == ebooklib.ITEM_IMAGE:
-                    if item.get_name().lower().startswith('cover'):
-                        cover_item = item
-                        break
-        
-        # Method 3: Check for 'cover' in item name or id
-        if not cover_item:
-            for item in book.get_items():
-                if item.get_type() == ebooklib.ITEM_IMAGE:
-                    if 'cover' in item.get_name().lower() or 'cover' in item.id.lower():
-                        cover_item = item
-                        break
-        
-        # Method 4: Use the first image as cover if no other method worked
-        if not cover_item:
-            images = [item for item in book.get_items() if item.get_type() == ebooklib.ITEM_IMAGE]
-            if images:
-                cover_item = images[0]
-        
-        if cover_item:
-            covers_dir = "covers"
-            os.makedirs(covers_dir, exist_ok=True)
-            
-            # Extract the identifier properly
-            identifier = metadata.get('identifier', 'unknown')
-            if isinstance(identifier, tuple):
-                identifier = identifier[0]  # Use the first element if it's a tuple
-            
-            # Ensure the identifier is a valid filename
-            identifier = "".join(c for c in identifier if c.isalnum() or c in ('-', '_'))
-            
-            cover_filename = f"{identifier}{os.path.splitext(cover_item.get_name())[1]}"
-            cover_path = os.path.join(covers_dir, cover_filename)
-            with open(cover_path, 'wb') as f:
-                f.write(cover_item.get_content())
-        
-        # Extract content
-        content = []
-        for item in book.get_items():
-            if item.get_type() == ebooklib.ITEM_DOCUMENT:
-                content.append(item.get_content())
-        
-        return metadata, cover_path, content
+def clean_text(text):
+    # Remove any remaining HTML entities
+    text = re.sub(r'&[a-zA-Z]+;', ' ', text)
+    # Replace multiple spaces, newlines, and tabs with a single space
+    text = re.sub(r'\s+', ' ', text)
+    # Strip leading and trailing whitespace
+    text = text.strip()
+    return text
 
-    # Loading the document
-    def epub_to_text(epub_path):
-        book = epub.read_epub(epub_path, options={'ignore_ncx': True})
-        text = ""
-        for item in book.get_items():
-            if item.get_type() == ebooklib.ITEM_DOCUMENT:
-                soup = BeautifulSoup(item.get_content(), 'html.parser')
-                text += soup.get_text() + "\n"
-        return text
+def clean_metadata(metadata):
+    cleaned = {}
+    for key, value in metadata.items():
+        if isinstance(value, str):
+            # Clean HTML tags from string values
+            cleaned[key] = clean_html(value)
+        elif isinstance(value, (int, float, bool)):
+            cleaned[key] = value
+        elif isinstance(value, (list, tuple)) and len(value) > 0:
+            cleaned[key] = clean_html(str(value[0]))
+        elif isinstance(value, dict):
+            cleaned[key] = clean_html(str(value))
+        else:
+            cleaned[key] = clean_html(str(value))
+    return cleaned
 
-    # Error handling for loading EPUB and extracting text
-    try:
-        print("Loading EPUB and extracting text...")
-        raw_text = epub_to_text(epub_path)
-        print("Text extraction complete.")
-    except Exception as e:
-        print(f"Failed to load or parse EPUB file: {e}")
-        raw_text = ""
-
-    # Extract book info
-    print("\n--- Extracting book metadata and content ---")
+def process_and_upload_book(epub_path):
+    print(f"Processing book for user_id: {USER_ID}")
     book_metadata, cover_path, content = extract_book_info(epub_path)
 
-    print("Book Metadata:")
-    for key, value in book_metadata.items():
-        print(f"  {key}: {value if value is not None else 'Not available'}")
+    cleaned_metadata = clean_metadata(book_metadata)
+    cleaned_metadata["type"] = "book_metadata"
+    cleaned_metadata["user_id"] = USER_ID
 
-    print(f"Cover image extracted: {'Yes' if cover_path else 'No'}")
     if cover_path:
-        print(f"Cover image saved to: {cover_path}")
+        cover_filename = os.path.basename(cover_path)
+        cleaned_metadata["cover_url"] = f"/covers/{cover_filename}"
     else:
-        print("No cover image found")
+        cleaned_metadata["cover_url"] = "No cover"
 
-    print(f"Number of documents extracted: {len(content)}")
+    metadata_id = f"metadata_{USER_ID}_{cleaned_metadata.get('identifier', 'unknown')}"
+    
+    print("DEBUG: Cleaned metadata:")
+    for key, value in cleaned_metadata.items():
+        print(f"{key}: {value} (type: {type(value)})")
 
-    # Add book metadata to ChromaDB
-    try:
-        print("\n--- Adding book metadata to ChromaDB ---")
-        cleaned_metadata = {k: str(v) if v is not None else "Not available" for k, v in book_metadata.items()}
-        cleaned_metadata["type"] = "book_metadata"
-        cleaned_metadata["user_id"] = user_id
-
-        # Generate cover URL
-        if cover_path:
-            cover_filename = os.path.basename(cover_path)
-            cover_url = f"/covers/{cover_filename}"
-            cleaned_metadata["cover_url"] = cover_url
-        else:
-            cleaned_metadata["cover_url"] = "No cover"
-
-        metadata_id = f"metadata_{user_id}_{book_metadata['identifier']}"
-        
-        collection.upsert(
-            documents=[str(cleaned_metadata)],
-            metadatas=[cleaned_metadata],
-            ids=[metadata_id]
-        )
-        print(f"Book metadata added to ChromaDB successfully with ID: {metadata_id}")
-        print(f"Metadata content: {cleaned_metadata}")
-    except Exception as e:
-        print(f"Failed to add book metadata to ChromaDB: {e}")
-
-    # Combine all content into a single string
-    raw_text = "\n".join([BeautifulSoup(doc, 'html.parser').get_text() for doc in content])
-
-    # Splitting the document
-    print("Splitting the text into chunks...")
-    text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,
-        chunk_overlap=100,
-        length_function=len,
+    collection.upsert(
+        documents=[str(cleaned_metadata)],
+        metadatas=[cleaned_metadata],
+        ids=[metadata_id]
     )
+    print(f"Book metadata added to ChromaDB with ID: {metadata_id}")
 
-    chunks = text_splitter.split_text(raw_text)
-    print(f"Splitting complete. Number of chunks created: {len(chunks)}")
+    print("\nProcessing book content...")
+    raw_text = "\n".join([BeautifulSoup(doc, 'html.parser').get_text() for doc in content])
+    cleaned_text = clean_text(raw_text)
+    print(f"Total cleaned text length: {len(cleaned_text)} characters")
 
-    # Preparing to be added to ChromaDB
-    documents = chunks
-    metadata = [{
-        "source": epub_path,
-        "book_id": book_metadata['identifier'],
-        "title": book_metadata.get('title', 'Unknown'),
-        "author": book_metadata.get('author', 'Unknown'),
-        "language": book_metadata.get('language', 'Unknown'),
-        "cover_url": cleaned_metadata["cover_url"],
-        "user_id": user_id  # Add user_id to each chunk's metadata
-    } for _ in chunks]
+    print("\nChunking book content...")
+    chunk_size = 1000
+    chunk_overlap = 10
+    splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    chunks = splitter.split_text(cleaned_text)
+    
+    print(f"Chunk size: {chunk_size}")
+    print(f"Chunk overlap: {chunk_overlap}")
+    print(f"Created {len(chunks)} chunks")
 
-    # Generate unique IDs for each chunk
-    ids = [f"{user_id}_{book_metadata['identifier']}_{i}" for i in range(len(chunks))]
+    # Print details of the first few chunks
+    num_chunks_to_show = 3
+    for i, chunk in enumerate(chunks[:num_chunks_to_show]):
+        print(f"\nChunk {i+1}:")
+        print(f"Length: {len(chunk)} characters")
+        print(f"Preview: {chunk[:100]}...")  # Show first 100 characters of the chunk
 
-    # When upserting chunks, ensure all values are strings
-    try:
-        print("Starting to upsert into ChromaDB...")
-        for i in range(0, len(documents), 100):
-            batch_documents = documents[i:i+100]
-            batch_metadata = [{k: str(v) for k, v in m.items()} for m in metadata[i:i+100]]
-            batch_ids = ids[i:i+100]
-            
-            collection.upsert(
-                documents=batch_documents,
-                metadatas=batch_metadata,
-                ids=batch_ids
-            )
-            print(f"Upserted batch {i//100 + 1} of {len(documents)//100 + 1}")
-        print("Upsert complete.")
-    except Exception as e:
-        print(f"Failed to upsert into ChromaDB: {e}")
+    print("\nUploading chunks to ChromaDB...")
+    for i, chunk in enumerate(chunks):
+        chunk_id = f"{USER_ID}_{cleaned_metadata.get('identifier', 'unknown')}_{i}"
+        chunk_metadata = {
+            "source": epub_path,
+            "book_id": cleaned_metadata.get('identifier', 'unknown'),
+            "title": cleaned_metadata.get('title', 'Unknown'),
+            "author": cleaned_metadata.get('creator', 'Unknown'),
+            "language": cleaned_metadata.get('language', 'Unknown'),
+            "cover_url": cleaned_metadata["cover_url"],
+            "user_id": USER_ID,
+            "chunk_index": i
+        }
+        collection.upsert(
+            documents=[chunk],
+            metadatas=[chunk_metadata],
+            ids=[chunk_id]
+        )
+        if i % 50 == 0:  # Print progress every 50 chunks
+            print(f"Uploaded {i+1}/{len(chunks)} chunks...")
 
-    # After all upserts are complete
-    try:
-        total_items = collection.count()
-        print(f"Total items in collection after upserts: {total_items}")
-    except Exception as e:
-        print(f"Error when trying to count items in collection: {e}")
-
-    print(f"Book uploaded successfully for user: {user_id}")
+    print(f"\nFinished uploading {len(chunks)} chunks for the book.")
 
 if __name__ == "__main__":
-    # For development/testing, you can call the function without a user_id
     process_and_upload_book(EPUB_FILE_PATH)
-
-    # In a real application, you would call it with a user_id like this:
-    # process_and_upload_book(EPUB_FILE_PATH, user_id="actual_user_id")
+    print("\nDEBUG: Querying all items in the collection")
+    all_items = collection.get(include=["metadatas"])
+    print(f"Total items: {len(all_items['ids'])}")

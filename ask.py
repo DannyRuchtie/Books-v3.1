@@ -30,15 +30,19 @@ while True:
     # Move the collection query inside the loop
     results = collection.query(
         query_texts=[user_query],
-        n_results=10
+        n_results=10  
     )
-    
+
+    # Print the 10 query results
+    print("\nQuery Results:")
+    for i, doc in enumerate(results['documents'][0], 1):
+        print(f"{i}. {doc[:100]}...")  # Print first 100 characters of each result
+
     # Update the system prompt with new results
     system_prompt = """
     You are a helpful assistant. You answer questions about books. 
-    But you only answer based on knowledge I'm providing you. You don't use your internal 
-    knowledge and you don't make things up. 
-    If you don't know the answer, just say: I don't know
+    But you only answer based on knowledge I'm providing you. Only use your internal knowledge if you are absolutly sure if its about this book and don't make things up. 
+    If you don't know the answer, just say something like: I don't know.
     --------------------
     The data:
     """+str(results['documents'])+"""
