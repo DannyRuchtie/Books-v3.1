@@ -7,6 +7,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Initialize the OpenAI client
+client = OpenAI()
+
 # setting the environment
 
 CHROMA_PATH = r"chroma_db"
@@ -16,38 +19,42 @@ chroma_client = chromadb.PersistentClient(path=CHROMA_PATH)
 collection = chroma_client.get_or_create_collection(name="books")
 
 
-user_query = input("What do you want to know about this book?\n\n")
+print("Welcome to the book assistant. Type 'exit' to quit at any time.")
 
-results = collection.query(
-    query_texts=[user_query],
-    n_results=10
-)
-
-# print(results['documents'])
-# print(results['metadatas'])
-
-client = OpenAI()
-
-system_prompt = """
-You are a helpful assistant. You answer questions books. 
-But you only answer based on knowledge I'm providing you. You don't use your internal 
-knowledge and you don't make thins up. 
-If you don't know the answer, just say: I don't know
---------------------
-The data:
-"""+str(results['documents'])+"""
-"""
-
-# print(system_prompt)
-
-response = client.chat.completions.create(
-    model="gpt-4o",
+while True:
+    user_query = input("\nQ:")
+    
+    if user_query.lower() == 'exit':
+        break
+    
+    # Move the collection query inside the loop
+    results = collection.query(
+        query_texts=[user_query],
+        n_results=10
+    )
+    
+    # Update the system prompt with new results
+    system_prompt = """
+    You are a helpful assistant. You answer questions about books. 
+    But you only answer based on knowledge I'm providing you. You don't use your internal 
+    knowledge and you don't make things up. 
+    If you don't know the answer, just say: I don't know
+    --------------------
+    The data:
+    """+str(results['documents'])+"""
+    """
+    
     messages = [
-        {"role":"system","content":system_prompt},
-        {"role":"user","content":user_query}    
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_query}
     ]
-)
+    
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=messages
+    )
+    
+    assistant_response = response.choices[0].message.content
+    print("\nAssistant:", assistant_response)
 
-# print("\n\n---------------------\n\n")
-
-print(response.choices[0].message.content)
+print("Thank you for using the book assistant. Goodbye!")
