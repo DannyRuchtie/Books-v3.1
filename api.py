@@ -17,6 +17,13 @@ from bs4 import BeautifulSoup
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import uuid
 import magic  # You'll need to install this: pip install python-magic
+import json
+import io
+import chardet
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -81,24 +88,32 @@ async def list_books(user_id: str = Depends(get_user_id)):
     print(f"IDs: {results['ids']}")
     print(f"Metadatas: {results['metadatas']}")
 
+    print("DEBUG: Detailed results structure:")
+    for id, metadata in zip(results['ids'], results['metadatas']):
+        print(f"ID: {id}")
+        print(f"Metadata: {metadata}")
+        print("---")
+
     books = []
     for id_list, metadata_list in zip(results['ids'], results['metadatas']):
-        # Ensure id is a string
-        id = id_list[0] if isinstance(id_list, list) else id_list
-        # Ensure metadata is a dictionary
-        metadata = metadata_list[0] if isinstance(metadata_list, list) else metadata_list
-        
-        books.append(Book(
-            id=id,
-            identifier=metadata.get('identifier', 'Unknown'),
-            title=metadata.get('title', 'Unknown Title'),
-            cover_url=metadata.get('cover_url', 'No cover')
-        ))
+        # Ensure id_list and metadata_list are not empty
+        if id_list and metadata_list:
+            book_id = str(id_list[0]) if isinstance(id_list, list) else str(id_list)  # Convert to string
+            metadata = metadata_list[0] if isinstance(metadata_list, list) else metadata_list
+            books.append(Book(
+                id=book_id,
+                identifier=metadata.get('identifier', 'Unknown'),
+                title=metadata.get('title', 'Unknown Title'),
+                cover_url=metadata.get('cover_url', 'No cover')
+            ))
+        else:
+            print(f"WARNING: Empty id or metadata for a book")
     
     return books
 
 def extract_book_info(epub_path):
-    book = epub.read_epub(epub_path)
+    logger.debug(f"Starting to extract book info from {epub_path}")
+    book = epub.read_epub(epub_path, options={'ignore_ncx': True})
     
     # Initialize metadata dictionary
     metadata = {}
@@ -109,22 +124,54 @@ def extract_book_info(epub_path):
             for name, values in book.metadata[namespace].items():
                 if values:
                     metadata[name] = values[0][0]
+        logger.debug(f"Extracted metadata: {metadata}")
     except Exception as e:
-        print(f"Error extracting metadata: {str(e)}")
+        logger.error(f"Error extracting metadata: {str(e)}")
     
     # Extract cover
     cover_path = None
-    for item in book.get_items_of_type(ebooklib.ITEM_COVER):
-        _, extension = os.path.splitext(item.file_name)
-        cover_path = f'temp_cover{extension}'
-        with open(cover_path, 'wb') as f:
-            f.write(item.content)
-        break
+    try:
+        for item in book.get_items():
+            if item.get_type() == ebooklib.ITEM_IMAGE:
+                if 'cover' in item.get_name().lower() or 'cover' in item.id.lower():
+                    covers_dir = "covers"
+                    os.makedirs(covers_dir, exist_ok=True)
+                    logger.debug(f"Created covers directory: {covers_dir}")
+                    
+                    identifier = metadata.get('identifier', 'unknown')
+                    logger.debug(f"Book identifier: {identifier}")
+                    
+                    # Handle the case where identifier might be a dictionary
+                    if isinstance(identifier, dict):
+                        identifier = str(identifier.get('id', 'unknown'))
+                    elif identifier is None:
+                        identifier = 'unknown'
+                    else:
+                        identifier = str(identifier)
+                    
+                    # Now that identifier is guaranteed to be a string, we can process it
+                    identifier = "".join(c for c in identifier if c.isalnum() or c in ('-', '_'))
+                    cover_filename = f"{identifier}{os.path.splitext(item.get_name())[1]}"
+                    cover_path = os.path.join(covers_dir, cover_filename)
+                    logger.debug(f"Attempting to save cover image to: {cover_path}")
+                    
+                    with open(cover_path, 'wb') as f:
+                        f.write(item.get_content())
+                    logger.debug(f"Cover image saved successfully")
+                    break
+        if not cover_path:
+            logger.warning("No cover image found in the EPUB file")
+    except Exception as e:
+        logger.error(f"Error extracting cover image: {str(e)}")
     
     # Extract content
-    content = ""
-    for item in book.get_items_of_type(ebooklib.ITEM_DOCUMENT):
-        content += item.get_content().decode('utf-8')
+    content = []
+    try:
+        for item in book.get_items_of_type(ebooklib.ITEM_DOCUMENT):
+            content.append(item.get_content().decode('utf-8'))
+        logger.debug(f"Extracted {len(content)} content items")
+    except Exception as e:
+        logger.error(f"Error extracting content: {str(e)}")
     
     return metadata, cover_path, content
 
@@ -149,33 +196,34 @@ def clean_metadata(metadata):
 
 @app.post("/upload/{user_id}")
 async def upload_book(user_id: str, file: UploadFile = File(...)):
+    temp_file_path = None
     try:
-        # Create a temporary file to store the uploaded content
+        # Read the file content
+        content = await file.read()
+        
+        # Create a temporary file
         with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(file.filename)[1]) as temp_file:
-            shutil.copyfileobj(file.file, temp_file)
+            temp_file.write(content)
             temp_file_path = temp_file.name
 
-        # Determine the file type
-        file_type = magic.from_file(temp_file_path, mime=True)
-        print(f"Detected file type: {file_type}")  # Debug print
+        print(f"Temporary file created: {temp_file_path}")
 
-        if file_type == 'application/epub+zip':
-            # It's an EPUB file
-            epub_path = temp_file_path
-        elif file_type == 'application/zip':
-            # It's a ZIP file, try to extract EPUB
+        # Check if it's a valid ZIP file
+        if zipfile.is_zipfile(temp_file_path):
             with zipfile.ZipFile(temp_file_path, 'r') as zip_ref:
                 epub_files = [f for f in zip_ref.namelist() if f.lower().endswith('.epub')]
-                if not epub_files:
-                    raise HTTPException(status_code=400, detail="ZIP file does not contain an EPUB")
-                epub_path = os.path.join(os.path.dirname(temp_file_path), epub_files[0])
-                zip_ref.extract(epub_files[0], os.path.dirname(temp_file_path))
-        else:
-            raise HTTPException(status_code=400, detail=f"Unsupported file type: {file_type}")
+                if epub_files:
+                    # Extract the first EPUB file found
+                    epub_path = zip_ref.extract(epub_files[0], path=os.path.dirname(temp_file_path))
+                    os.unlink(temp_file_path)  # Remove the original zip file
+                    temp_file_path = epub_path  # Update the path to the extracted EPUB
+                    print(f"Extracted EPUB file: {temp_file_path}")
 
         # Process the EPUB file
-        book_metadata, cover_path, content = extract_book_info(epub_path)
+        book_metadata, cover_path, content = extract_book_info(temp_file_path)
         
+        print("Debug: Raw metadata:", book_metadata)  # Debug print
+
         cleaned_metadata = clean_metadata(book_metadata)
         cleaned_metadata["type"] = "book_metadata"
         cleaned_metadata["user_id"] = user_id
@@ -186,24 +234,28 @@ async def upload_book(user_id: str, file: UploadFile = File(...)):
         else:
             cleaned_metadata["cover_url"] = "No cover"
 
+        # Truncate description if it's too long
+        if "description" in cleaned_metadata:
+            cleaned_metadata["description"] = cleaned_metadata["description"][:1000]  # Limit to 1000 characters
+
         book_id = str(uuid.uuid4())
         metadata_id = f"metadata_{user_id}_{book_id}"
 
         print("Debug: Cleaned metadata:", cleaned_metadata)  # Debug print
 
-        collection.upsert(
-            documents=[str(cleaned_metadata)],
-            metadatas=[cleaned_metadata],
-            ids=[metadata_id]
-        )
-
+        # Process and store the book content
+        print("Starting content chunking...")
         raw_text = "\n".join([clean_html(doc) for doc in content])
         cleaned_text = clean_text(raw_text)
+
+        print(f"Total text length: {len(cleaned_text)} characters")
 
         chunk_size = 1000
         chunk_overlap = 10
         splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
         chunks = splitter.split_text(cleaned_text)
+
+        print(f"Number of chunks created: {len(chunks)}")
 
         for i, chunk in enumerate(chunks):
             chunk_id = f"{user_id}_{book_id}_{i}"
@@ -217,17 +269,21 @@ async def upload_book(user_id: str, file: UploadFile = File(...)):
                 "user_id": user_id,
                 "chunk_index": i
             }
+            print(f"Upserting chunk {i+1}/{len(chunks)}, length: {len(chunk)} characters")
             collection.upsert(
                 documents=[chunk],
                 metadatas=[chunk_metadata],
                 ids=[chunk_id]
             )
 
-        # Clean up temporary files
-        if 'temp_file_path' in locals():
-            os.unlink(temp_file_path)
-        if 'epub_path' in locals() and epub_path != temp_file_path:
-            os.unlink(epub_path)
+        print("Chunking and upserting complete")
+
+        # Store the book metadata
+        collection.upsert(
+            documents=[json.dumps(cleaned_metadata)],  # Convert to JSON string
+            metadatas=[cleaned_metadata],
+            ids=[metadata_id]
+        )
 
         return {"message": "Book uploaded and processed successfully", "book_id": book_id}
 
@@ -238,6 +294,11 @@ async def upload_book(user_id: str, file: UploadFile = File(...)):
         import traceback
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Error processing file: {str(e)}")
+    finally:
+        # Clean up temporary file
+        if temp_file_path and os.path.exists(temp_file_path):
+            os.unlink(temp_file_path)
+            print(f"Temporary file deleted: {temp_file_path}")
 
 @app.post("/ask")
 async def ask_question(question: Question):
@@ -277,7 +338,7 @@ async def ask_question(question: Question):
     ]
     
     response = client.chat.completions.create(
-        model="gpt-4-1106-preview",
+        model="gpt-4o",
         messages=messages
     )
     
@@ -320,7 +381,7 @@ async def chat(request: ChatRequest):
     
     async def event_generator():
         stream = await client.chat.completions.create(
-            model="gpt-4-1106-preview",
+            model="gpt-4o",
             messages=messages,
             stream=True
         )
@@ -338,43 +399,3 @@ app.mount("/covers", StaticFiles(directory=covers_dir), name="covers")
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
-
-@app.post("/upload_epub")
-async def upload_epub(file: UploadFile = File(...)):
-    try:
-        contents = await file.read()
-        
-        print(f"Uploaded file: {file.filename}, Size: {len(contents)} bytes")
-
-        # Check if it's a valid ZIP file
-        if not zipfile.is_zipfile(io.BytesIO(contents)):
-            raise ValueError("The file is not a valid ZIP file")
-
-        # Check if it has the correct EPUB structure
-        with zipfile.ZipFile(io.BytesIO(contents)) as zf:
-            file_list = zf.namelist()
-            
-            # Check for mimetype file
-            if 'mimetype' not in file_list:
-                raise ValueError("Missing 'mimetype' file in EPUB")
-            
-            # Check mimetype content
-            mimetype_content = zf.read('mimetype').decode('utf-8').strip()
-            if mimetype_content != 'application/epub+zip':
-                raise ValueError(f"Incorrect mimetype: {mimetype_content}")
-            
-            # Check for container.xml
-            if 'META-INF/container.xml' not in file_list:
-                raise ValueError("Missing 'META-INF/container.xml' in EPUB")
-
-        # If we've made it here, it's likely a valid EPUB
-        print("File appears to be a valid EPUB")
-
-        # Your existing EPUB processing code here
-        ...
-
-    except Exception as e:
-        print(f"Error processing file: {str(e)}")
-        raise HTTPException(status_code=400, detail=f"Error processing file: {str(e)}")
-
-    return {"message": "File processed successfully"}
