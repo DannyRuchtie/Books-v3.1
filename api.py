@@ -247,7 +247,7 @@ async def upload_book(user_id: str, file: UploadFile = File(...)):
         print(f"Total text length: {len(cleaned_text)} characters")
 
         chunk_size = 1000
-        chunk_overlap = 10
+        chunk_overlap = 150
         splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
         chunks = splitter.split_text(cleaned_text)
 
@@ -313,7 +313,7 @@ async def ask_question(question: Question):
     results = collection.query(
         query_texts=[question.query],
         where={"$and": [{"user_id": question.user_id}, {"book_id": question.book_id}]},
-        n_results=10
+        n_results=5
     )
 
     system_prompt = f"""
