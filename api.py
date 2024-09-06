@@ -1,7 +1,9 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException, Depends, BackgroundTasks
+from fastapi import FastAPI, File, UploadFile, HTTPException, Depends
 from fastapi.responses import StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, validator
+from typing import List
 import chromadb
 import os
 from dotenv import load_dotenv
@@ -19,7 +21,6 @@ import json
 import io
 import chardet
 import logging
-import asyncio
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -50,6 +51,26 @@ class Book(BaseModel):
     identifier: str
     title: str
     cover_url: str
+
+class Question(BaseModel):
+    user_id: str
+    book_id: str
+    query: str
+
+class Message(BaseModel):
+    role: str
+    content: str
+
+class ChatRequest(BaseModel):
+    user_id: str
+    book_id: str
+    messages: List[Message]
+
+    @validator('messages')
+    def last_message_must_be_user(cls, v):
+        if not v or v[-1].role != "user":
+            raise ValueError("The last message must be from the user")
+        return v
 
 def get_user_id(user_id: str):
     # In a real application, you'd validate the user_id here
@@ -169,51 +190,31 @@ def clean_metadata(metadata):
                 cleaned[str(key)] = str(value)  # Convert all values to strings
     return cleaned
 
-upload_statuses = {}
-
 @app.post("/upload/{user_id}")
-async def upload_book(user_id: str, background_tasks: BackgroundTasks, file: UploadFile = File(...)):
+async def upload_book(user_id: str, file: UploadFile = File(...)):
+    temp_file_path = None
     try:
-        temp_file_path = await save_upload_file_temp(file)
-        upload_id = str(uuid.uuid4())
-        upload_statuses[upload_id] = "queued"
-        background_tasks.add_task(process_book, temp_file_path, user_id, upload_id, file.filename)
-        return {"message": "Upload received, processing started", "upload_id": upload_id}
-    except Exception as e:
-        logger.error(f"Error in upload_book: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Error processing upload: {str(e)}")
-
-@app.get("/upload-status/{upload_id}")
-async def get_upload_status(upload_id: str):
-    status = upload_statuses.get(upload_id, "not found")
-    return {"status": status}
-
-async def save_upload_file_temp(upload_file: UploadFile) -> str:
-    try:
-        # Create a temporary directory
-        with tempfile.TemporaryDirectory() as temp_dir:
-            temp_file_path = os.path.join(temp_dir, upload_file.filename)
-            
-            # Open the temporary file
-            with open(temp_file_path, "wb") as temp_file:
-                # Read the uploaded file in chunks
-                chunk_size = 1024 * 1024  # 1 MB chunks
-                while chunk := await upload_file.read(chunk_size):
-                    temp_file.write(chunk)
-            
-            # Move the file to a location that won't be deleted
-            permanent_path = os.path.join("temp_uploads", upload_file.filename)
-            os.makedirs(os.path.dirname(permanent_path), exist_ok=True)
-            shutil.move(temp_file_path, permanent_path)
+        # Read the file content
+        content = await file.read()
         
-        return permanent_path
-    except Exception as e:
-        logger.error(f"Error saving upload file: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Could not save upload file: {str(e)}")
+        # Create a temporary file
+        with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(file.filename)[1]) as temp_file:
+            temp_file.write(content)
+            temp_file_path = temp_file.name
 
-async def process_book(temp_file_path: str, user_id: str, upload_id: str, filename: str):
-    try:
-        upload_statuses[upload_id] = "processing"
+        print(f"Temporary file created: {temp_file_path}")
+
+        # Check if it's a valid ZIP file
+        if zipfile.is_zipfile(temp_file_path):
+            with zipfile.ZipFile(temp_file_path, 'r') as zip_ref:
+                epub_files = [f for f in zip_ref.namelist() if f.lower().endswith('.epub')]
+                if epub_files:
+                    # Extract the first EPUB file found
+                    epub_path = zip_ref.extract(epub_files[0], path=os.path.dirname(temp_file_path))
+                    os.unlink(temp_file_path)  # Remove the original zip file
+                    temp_file_path = epub_path  # Update the path to the extracted EPUB
+                    print(f"Extracted EPUB file: {temp_file_path}")
+
         # Process the EPUB file
         book_metadata, cover_path, content = extract_book_info(temp_file_path)
         
@@ -255,7 +256,7 @@ async def process_book(temp_file_path: str, user_id: str, upload_id: str, filena
         for i, chunk in enumerate(chunks):
             chunk_id = f"{user_id}_{book_id}_{i}"
             chunk_metadata = {
-                "source": filename,
+                "source": file.filename,
                 "book_id": book_id,
                 "title": cleaned_metadata.get('title', 'Unknown'),
                 "author": cleaned_metadata.get('creator', 'Unknown'),
@@ -280,7 +281,6 @@ async def process_book(temp_file_path: str, user_id: str, upload_id: str, filena
             ids=[metadata_id]
         )
 
-        upload_statuses[upload_id] = "completed"
         return {"message": "Book uploaded and processed successfully", "book_id": book_id}
 
     except Exception as e:
@@ -289,13 +289,104 @@ async def process_book(temp_file_path: str, user_id: str, upload_id: str, filena
         print(f"Error args: {e.args}")
         import traceback
         traceback.print_exc()
-        upload_statuses[upload_id] = f"failed: {str(e)}"
-        # Don't raise HTTPException here, as it's a background task
+        raise HTTPException(status_code=500, detail=f"Error processing file: {str(e)}")
     finally:
         # Clean up temporary file
         if temp_file_path and os.path.exists(temp_file_path):
             os.unlink(temp_file_path)
             print(f"Temporary file deleted: {temp_file_path}")
+
+@app.post("/ask")
+async def ask_question(question: Question):
+    # First, retrieve the book metadata
+    book_metadata = collection.get(
+        ids=[question.book_id],
+        where={"user_id": question.user_id}
+    )
+    
+    if not book_metadata['metadatas']:
+        raise HTTPException(status_code=404, detail="Book not found")
+    
+    book_description = book_metadata['metadatas'][0].get('description', 'No description available')
+    
+    # Query for relevant content
+    results = collection.query(
+        query_texts=[question.query],
+        where={"$and": [{"user_id": question.user_id}, {"book_id": question.book_id}]},
+        n_results=5
+    )
+
+    system_prompt = f"""
+    You are a helpful assistant. You answer questions about a specific book. 
+    Only use the knowledge I'm providing you. Use your internal knowledge only if you're absolutely sure it's about this book and don't make things up. 
+    If you don't know the answer, just say something like: I don't know.
+    --------------------
+    Book Description:
+    {book_description}
+    --------------------
+    Relevant Content:
+    {str(results['documents'])}
+    """
+    
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": question.query}
+    ]
+    
+    response = client.chat.completions.create(
+        model="gpt-4o",
+        messages=messages
+    )
+    
+    return {"answer": response.choices[0].message.content}
+
+@app.post("/chat")
+async def chat(request: ChatRequest):
+    # Retrieve book metadata
+    book_metadata = collection.get(
+        ids=[request.book_id],
+        where={"user_id": request.user_id}
+    )
+    
+    if not book_metadata['metadatas']:
+        raise HTTPException(status_code=404, detail="Book not found")
+    
+    book_description = book_metadata['metadatas'][0].get('description', 'No description available')
+    
+    # Query for relevant content based on the last user message
+    last_user_message = next((m.content for m in reversed(request.messages) if m.role == "user"), "")
+    results = collection.query(
+        query_texts=[last_user_message],
+        where={"$and": [{"user_id": request.user_id}, {"book_id": request.book_id}]},
+        n_results=5
+    )
+
+    system_prompt = f"""
+    You are a helpful assistant. You answer questions about a specific book. 
+    Only use the knowledge I'm providing you. Use your internal knowledge only if you're absolutely sure it's about this book and don't make things up. 
+    If you don't know the answer, just say something like: I don't know.
+    --------------------
+    Book Description:
+    {book_description}
+    --------------------
+    Relevant Content:
+    {str(results['documents'])}
+    """
+    
+    messages = [{"role": "system", "content": system_prompt}] + [m.dict() for m in request.messages]
+    
+    async def event_generator():
+        stream = await client.chat.completions.create(
+            model="gpt-4o",
+            messages=messages,
+            stream=True
+        )
+        async for chunk in stream:
+            if chunk.choices[0].delta.content is not None:
+                yield f"data: {chunk.choices[0].delta.content}\n\n"
+        yield "data: [DONE]\n\n"
+
+    return StreamingResponse(event_generator(), media_type="text/event-stream")
 
 # Serve static files from the 'covers' directory
 covers_dir = os.path.join(os.path.dirname(__file__), "covers")
