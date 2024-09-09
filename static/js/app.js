@@ -156,3 +156,7 @@ function addMessageToChat(role, content) {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
+window.addEventListener('focus', () => {
+    fetchBooks(currentUserId);
+});
+

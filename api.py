@@ -71,6 +71,7 @@ def get_user_id(user_id: str):
 
 @app.get("/books/{user_id}", response_model=List[Book])
 async def list_books(user_id: str = Depends(get_user_id)):
+    # Query the database each time this endpoint is called
     results = collection.query(
         query_texts=[""],
         where={"$and": [{"type": "book_metadata"}, {"user_id": user_id}]},
@@ -145,7 +146,7 @@ async def chat(request: ChatRequest):
 
     system_prompt = f"""
     You are a helpful book expert. You answer questions about a specific book. 
-    Only use the knowledge I'm providing you. Use your internal knowledge only if you're absolutely sure it's about this book and don't make things up. 
+    Use the knowledge I'm providing you. Use your internal knowledge only if you're  sure it's about this book and make it clear that you are not using info from the book and don't make things up. 
     If you don't know the answer, just say something like: I don't know.
     --------------------
     Book title:
