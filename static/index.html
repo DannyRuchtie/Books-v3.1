@@ -11,6 +11,22 @@
       <!-- Books will be dynamically added here -->
     </div>
 
+    <div id="chatInterface" class="chat-interface hidden">
+      <div id="chatHeader">
+        <h2 id="chatBookTitle"></h2>
+        <button id="closeChatBtn">Close</button>
+      </div>
+      <div id="chatMessages"></div>
+      <div id="chatInput">
+        <input
+          type="text"
+          id="userMessage"
+          placeholder="Type your message..."
+        />
+        <button id="sendMessageBtn">Send</button>
+      </div>
+    </div>
+
     <script src="/static/js/app.js"></script>
   </body>
 </html>

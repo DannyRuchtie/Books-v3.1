@@ -10,6 +10,8 @@ import os
 from dotenv import load_dotenv
 import logging
 import openai
+from openai import OpenAI
+import asyncio
 
 # Set up logging
 logging.basicConfig(level=logging.DEBUG)
@@ -36,7 +38,7 @@ chroma_client = chromadb.PersistentClient(path=CHROMA_PATH)
 collection = chroma_client.get_or_create_collection(name="books")
 
 # OpenAI setup
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Mount the static directory
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -158,12 +160,12 @@ async def chat(request: ChatRequest):
     messages = [{"role": "system", "content": system_prompt}] + [m.dict() for m in request.messages]
     
     async def event_generator():
-        stream = await openai.ChatCompletion.acreate(
+        stream = client.chat.completions.create(
             model="gpt-4",
             messages=messages,
             stream=True
         )
-        async for chunk in stream:
+        for chunk in stream:
             if chunk.choices[0].delta.content is not None:
                 yield f"data: {chunk.choices[0].delta.content}\n\n"
         yield "data: [DONE]\n\n"
