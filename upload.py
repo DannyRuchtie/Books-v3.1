@@ -1,173 +1,208 @@
-import warnings
-import ebooklib
-from ebooklib import epub
-from bs4 import BeautifulSoup
+from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 import os
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+import uuid
+import shutil
+import logging
+import zipfile
+import xml.etree.ElementTree as ET
+from bs4 import BeautifulSoup
 import chromadb
-import re
+from PIL import Image
+import io
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-# Suppress specific warnings
-warnings.filterwarnings("ignore", category=UserWarning, module="ebooklib.epub")
-warnings.filterwarnings("ignore", category=FutureWarning, module="ebooklib.epub")
+# Set up logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
-# Setting the environment
-EPUB_FILE_PATH = os.path.join("books", "Creativity-Inc.epub")
+# Initialize FastAPI app
+app = FastAPI()
+
+# CORS middleware setup
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# ChromaDB setup
 CHROMA_PATH = os.path.join("chroma_db")
-USER_ID = "79c8d98e-b923-48f4-b2bd-0feeb4285419"  # Hard-coded user_id
-
 chroma_client = chromadb.PersistentClient(path=CHROMA_PATH)
 collection = chroma_client.get_or_create_collection(name="books")
 
-def extract_book_info(epub_path):
-    book = epub.read_epub(epub_path, options={'ignore_ncx': True})
-    
-    metadata = {}
-    for namespace in book.metadata:
-        for name, values in book.metadata[namespace].items():
-            metadata[name] = values[0] if values else None
-    
-    cover_item = None
-    cover_path = None
-    
-    # Find cover image (simplified)
-    for item in book.get_items():
-        if item.get_type() == ebooklib.ITEM_IMAGE:
-            if 'cover' in item.get_name().lower() or 'cover' in item.id.lower():
-                cover_item = item
-                break
-    
-    if cover_item:
-        covers_dir = "covers"
-        os.makedirs(covers_dir, exist_ok=True)
-        identifier = metadata.get('identifier', 'unknown')
-        
-        # Handle the case where identifier might be a dictionary
-        if isinstance(identifier, dict):
-            identifier = str(identifier.get('id', 'unknown'))
-        elif identifier is None:
-            identifier = 'unknown'
+def extract_cover_image(zip_ref, opf_content, book_id):
+    try:
+        root = ET.fromstring(opf_content)
+        ns = {'opf': 'http://www.idpf.org/2007/opf'}
+
+        cover_id = root.find(".//opf:meta[@name='cover']", ns)
+        if cover_id is not None:
+            cover_id = cover_id.get('content')
+            cover_item = root.find(f".//opf:item[@id='{cover_id}']", ns)
         else:
-            identifier = str(identifier)
-        
-        # Now that identifier is guaranteed to be a string, we can process it
-        identifier = "".join(c for c in identifier if c.isalnum() or c in ('-', '_'))
-        cover_filename = f"{identifier}{os.path.splitext(cover_item.get_name())[1]}"
-        cover_path = os.path.join(covers_dir, cover_filename)
-        with open(cover_path, 'wb') as f:
-            f.write(cover_item.get_content())
-    
-    content = [item.get_content() for item in book.get_items() if item.get_type() == ebooklib.ITEM_DOCUMENT]
-    
-    return metadata, cover_path, content
+            cover_item = root.find(".//opf:item[contains(@id, 'cover') or contains(@href, 'cover')]", ns)
 
-def clean_html(html_string):
-    # Remove HTML tags
-    soup = BeautifulSoup(html_string, "html.parser")
-    text = soup.get_text(separator=" ", strip=True)
-    # Replace multiple spaces with a single space
-    text = re.sub(r'\s+', ' ', text)
-    return text
+        if cover_item is not None:
+            cover_path = cover_item.get('href')
+            logger.info(f"Found cover path: {cover_path}")
+            
+            # Try to find the cover file in the EPUB
+            try:
+                with zip_ref.open(cover_path) as cover_file:
+                    cover_data = cover_file.read()
+            except KeyError:
+                # If the direct path fails, try to find the file in the EPUB
+                for file_name in zip_ref.namelist():
+                    if file_name.endswith(cover_path.split('/')[-1]):
+                        with zip_ref.open(file_name) as cover_file:
+                            cover_data = cover_file.read()
+                        break
+                else:
+                    raise Exception("Cover file not found in EPUB")
 
-def clean_text(text):
-    # Remove any remaining HTML entities
-    text = re.sub(r'&[a-zA-Z]+;', ' ', text)
-    # Replace multiple spaces, newlines, and tabs with a single space
-    text = re.sub(r'\s+', ' ', text)
-    # Strip leading and trailing whitespace
-    text = text.strip()
-    return text
+            cover_filename = f"{book_id}.jpg"
+            cover_path = os.path.join("covers", cover_filename)
+            os.makedirs(os.path.dirname(cover_path), exist_ok=True)
 
-def clean_metadata(metadata):
-    cleaned = {}
-    for key, value in metadata.items():
-        if isinstance(value, str):
-            # Clean HTML tags from string values
-            cleaned[key] = clean_html(value)
-        elif isinstance(value, (int, float, bool)):
-            cleaned[key] = value
-        elif isinstance(value, (list, tuple)) and len(value) > 0:
-            cleaned[key] = clean_html(str(value[0]))
-        elif isinstance(value, dict):
-            cleaned[key] = clean_html(str(value))
+            with Image.open(io.BytesIO(cover_data)) as img:
+                img = img.convert('RGB')
+                img.save(cover_path, 'JPEG')
+
+            logger.info(f"Extracted cover image: {cover_path}")
+            return f"/covers/{cover_filename}"
         else:
-            cleaned[key] = clean_html(str(value))
-    return cleaned
+            logger.warning("No cover image found in EPUB")
+            return None
+    except Exception as e:
+        logger.error(f"Error extracting cover image: {str(e)}")
+        return None
 
-def process_and_upload_book(epub_path):
-    print(f"Processing book for user_id: {USER_ID}")
-    book_metadata, cover_path, content = extract_book_info(epub_path)
-
-    cleaned_metadata = clean_metadata(book_metadata)
-    cleaned_metadata["type"] = "book_metadata"
-    cleaned_metadata["user_id"] = USER_ID
-
-    if cover_path:
-        cover_filename = os.path.basename(cover_path)
-        cleaned_metadata["cover_url"] = f"/covers/{cover_filename}"
-    else:
-        cleaned_metadata["cover_url"] = "No cover"
-
-    metadata_id = f"metadata_{USER_ID}_{cleaned_metadata.get('identifier', 'unknown')}"
-    
-    print("DEBUG: Cleaned metadata:")
-    for key, value in cleaned_metadata.items():
-        print(f"{key}: {value} (type: {type(value)})")
-
-    collection.upsert(
-        documents=[str(cleaned_metadata)],
-        metadatas=[cleaned_metadata],
-        ids=[metadata_id]
-    )
-    print(f"Book metadata added to ChromaDB with ID: {metadata_id}")
-
-    print("\nProcessing book content...")
-    raw_text = "\n".join([BeautifulSoup(doc, 'html.parser').get_text() for doc in content])
-    cleaned_text = clean_text(raw_text)
-    print(f"Total cleaned text length: {len(cleaned_text)} characters")
-
-    print("\nChunking book content...")
-    chunk_size = 1000
-    chunk_overlap = 10
-    splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
-    chunks = splitter.split_text(cleaned_text)
-    
-    print(f"Chunk size: {chunk_size}")
-    print(f"Chunk overlap: {chunk_overlap}")
-    print(f"Created {len(chunks)} chunks")
-
-    # Print details of the first few chunks
-    num_chunks_to_show = 3
-    for i, chunk in enumerate(chunks[:num_chunks_to_show]):
-        print(f"\nChunk {i+1}:")
-        print(f"Length: {len(chunk)} characters")
-        print(f"Preview: {chunk[:100]}...")  # Show first 100 characters of the chunk
-
-    print("\nUploading chunks to ChromaDB...")
-    for i, chunk in enumerate(chunks):
-        chunk_id = f"{USER_ID}_{cleaned_metadata.get('identifier', 'unknown')}_{i}"
-        chunk_metadata = {
-            "source": epub_path,
-            "book_id": cleaned_metadata.get('identifier', 'unknown'),
-            "title": cleaned_metadata.get('title', 'Unknown'),
-            "author": cleaned_metadata.get('creator', 'Unknown'),
-            "language": cleaned_metadata.get('language', 'Unknown'),
-            "cover_url": cleaned_metadata["cover_url"],
-            "user_id": USER_ID,
-            "chunk_index": i
-        }
-        collection.upsert(
-            documents=[chunk],
-            metadatas=[chunk_metadata],
-            ids=[chunk_id]
+def process_book(temp_file_path, user_id, book_id, filename):
+    try:
+        logger.info(f"Starting to process book: {filename}")
+        
+        with zipfile.ZipFile(temp_file_path, 'r') as zip_ref:
+            opf_file = next((f for f in zip_ref.namelist() if f.endswith('.opf')), None)
+            if not opf_file:
+                raise ValueError("No OPF file found in the EPUB")
+            
+            logger.info(f"Found OPF file: {opf_file}")
+            with zip_ref.open(opf_file) as opf:
+                opf_content = opf.read()
+                content_root = ET.fromstring(opf_content)
+            
+            ns = {'dc': 'http://purl.org/dc/elements/1.1/', 'opf': 'http://www.idpf.org/2007/opf'}
+            title = content_root.find('.//dc:title', ns).text if content_root.find('.//dc:title', ns) is not None else "Unknown Title"
+            creator = content_root.find('.//dc:creator', ns).text if content_root.find('.//dc:creator', ns) is not None else "Unknown Author"
+            identifier = content_root.find('.//dc:identifier', ns).text if content_root.find('.//dc:identifier', ns) is not None else "Unknown Identifier"
+            
+            logger.info(f"Extracted metadata - Title: {title}, Creator: {creator}, Identifier: {identifier}")
+            
+            cover_url = extract_cover_image(zip_ref, opf_content, book_id)
+            if not cover_url:
+                cover_url = "/covers/default.jpg"
+            
+            book_content = ""
+            for item in content_root.findall('.//opf:item[@media-type="application/xhtml+xml"]', ns):
+                html_path = item.get('href')
+                try:
+                    html_content = zip_ref.read(os.path.join(os.path.dirname(opf_file), html_path)).decode('utf-8')
+                    soup = BeautifulSoup(html_content, 'html.parser')
+                    book_content += soup.get_text() + "\n"
+                except Exception as e:
+                    logger.error(f"Error processing file {html_path}: {str(e)}")
+        
+        logger.info(f"Extracted book content. Length: {len(book_content)} characters")
+        logger.info("Starting chunking process...")
+        
+        text_splitter = RecursiveCharacterTextSplitter(
+            chunk_size=1000,
+            chunk_overlap=200,
+            length_function=len,
         )
-        if i % 50 == 0:  # Print progress every 50 chunks
-            print(f"Uploaded {i+1}/{len(chunks)} chunks...")
+        chunks = text_splitter.split_text(book_content)
+        
+        logger.info(f"Chunking complete. Total chunks: {len(chunks)}")
+        
+        logger.info("Adding book metadata and chunks to ChromaDB...")
+        
+        collection.add(
+            documents=[book_content[:1000]],  # Adding first 1000 characters as a summary
+            metadatas=[{
+                "type": "book_metadata",
+                "user_id": user_id,
+                "book_id": book_id,
+                "title": title,
+                "creator": creator,
+                "identifier": identifier,
+                "cover_url": cover_url
+            }],
+            ids=[book_id]
+        )
+        
+        # Add chunks in batches
+        batch_size = 100
+        for i in range(0, len(chunks), batch_size):
+            batch_chunks = chunks[i:i+batch_size]
+            batch_ids = [f"{book_id}_chunk_{j}" for j in range(i, i+len(batch_chunks))]
+            batch_metadatas = [{
+                "type": "book_chunk",
+                "user_id": user_id,
+                "book_id": book_id,
+                "title": title,
+                "creator": creator,
+                "chunk_index": j,
+                "total_chunks": len(chunks)
+            } for j in range(i, i+len(batch_chunks))]
+            
+            collection.add(
+                documents=batch_chunks,
+                metadatas=batch_metadatas,
+                ids=batch_ids
+            )
+            logger.info(f"Added batch of {len(batch_chunks)} chunks to ChromaDB")
+        
+        logger.info(f"Added book metadata and {len(chunks)} chunks to ChromaDB")
+        return {"status": "success", "message": f"Book '{title}' processed successfully", "chunks_added": len(chunks)}
 
-    print(f"\nFinished uploading {len(chunks)} chunks for the book.")
+    except Exception as e:
+        logger.error(f"Error processing book: {str(e)}")
+        raise
+    finally:
+        if os.path.exists(temp_file_path):
+            os.remove(temp_file_path)
+            logger.info(f"Removed temporary file: {temp_file_path}")
+
+@app.post("/upload/{user_id}")
+async def upload_file(user_id: str, file: UploadFile = File(...)):
+    try:
+        # Create a directory for temporary files if it doesn't exist
+        temp_dir = os.path.join(os.getcwd(), "temp_uploads")
+        os.makedirs(temp_dir, exist_ok=True)
+
+        # Save the file with a unique name
+        file_extension = os.path.splitext(file.filename)[1]
+        temp_file_name = f"{uuid.uuid4()}{file_extension}"
+        temp_file_path = os.path.join(temp_dir, temp_file_name)
+
+        with open(temp_file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+
+        logger.info(f"File saved temporarily at: {temp_file_path}")
+
+        book_id = str(uuid.uuid4())
+        
+        # Process the book immediately
+        result = process_book(temp_file_path, user_id, book_id, file.filename)
+        
+        return {"message": "File uploaded and processed successfully", "book_id": book_id, "result": result}
+    except Exception as e:
+        logger.error(f"Error processing upload: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error processing upload: {str(e)}")
 
 if __name__ == "__main__":
-    process_and_upload_book(EPUB_FILE_PATH)
-    print("\nDEBUG: Querying all items in the collection")
-    all_items = collection.get(include=["metadatas"])
-    print(f"Total items: {len(all_items['ids'])}")
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8001)
