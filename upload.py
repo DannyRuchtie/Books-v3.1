@@ -11,6 +11,7 @@ import chromadb
 from PIL import Image
 import io
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+import html  # Add this import at the top of your file
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -98,6 +99,7 @@ def process_book(temp_file_path, user_id, book_id, filename):
             title = content_root.find('.//dc:title', ns).text if content_root.find('.//dc:title', ns) is not None else "Unknown Title"
             creator = content_root.find('.//dc:creator', ns).text if content_root.find('.//dc:creator', ns) is not None else "Unknown Author"
             identifier = content_root.find('.//dc:identifier', ns).text if content_root.find('.//dc:identifier', ns) is not None else "Unknown Identifier"
+            description = content_root.find('.//dc:description', ns).text if content_root.find('.//dc:description', ns) is not None else "No description available"
             
             logger.info(f"Extracted metadata - Title: {title}, Creator: {creator}, Identifier: {identifier}")
             
@@ -130,7 +132,7 @@ def process_book(temp_file_path, user_id, book_id, filename):
         logger.info("Adding book metadata and chunks to ChromaDB...")
         
         collection.add(
-            documents=[book_content[:1000]],  # Adding first 1000 characters as a summary
+            documents=[book_content[:1000]],  # This might need to include the full description
             metadatas=[{
                 "type": "book_metadata",
                 "user_id": user_id,
@@ -138,7 +140,8 @@ def process_book(temp_file_path, user_id, book_id, filename):
                 "title": title,
                 "creator": creator,
                 "identifier": identifier,
-                "cover_url": cover_url
+                "cover_url": cover_url,
+                "description": description  # Make sure this line is present
             }],
             ids=[book_id]
         )
