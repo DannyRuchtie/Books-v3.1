@@ -1,15 +1,20 @@
+console.log('app.js loaded');
+
 document.addEventListener('DOMContentLoaded', () => {
-    const userId = '79c8d98e-b923-48f4-b2bd-0feeb4285419'; // Replace with actual user ID or method to get it
+    console.log('DOM fully loaded');
+    const userId = '1'; // Replace with actual user ID or method to get it
     fetchBooks(userId);
 });
 
 async function fetchBooks(userId) {
+    console.log('Fetching books for user:', userId);
     try {
         const response = await fetch(`/books/${userId}`);
         if (!response.ok) {
             throw new Error('Failed to fetch books');
         }
         const books = await response.json();
+        console.log('Fetched books:', books);
         displayBooks(books);
     } catch (error) {
         console.error('Error fetching books:', error);
@@ -18,7 +23,9 @@ async function fetchBooks(userId) {
 }
 
 function displayBooks(books) {
+    console.log('Displaying books:', books);
     const bookGrid = document.getElementById('bookGrid');
+    console.log('Book grid element:', bookGrid);
     bookGrid.innerHTML = ''; // Clear existing content
 
     if (books.length === 0) {
@@ -29,6 +36,7 @@ function displayBooks(books) {
     books.forEach(book => {
         const bookElement = createBookElement(book);
         bookGrid.appendChild(bookElement);
+        console.log('Added book to grid:', book.title);
     });
 }
 
@@ -46,7 +54,7 @@ function createBookElement(book) {
     titleElement.className = 'book-title';
 
     const authorElement = document.createElement('div');
-    authorElement.textContent = book.author;
+    authorElement.textContent = book.creator; // Changed from book.author to book.creator
     authorElement.className = 'book-author';
 
     bookItem.appendChild(coverImg);
@@ -55,3 +63,4 @@ function createBookElement(book) {
 
     return bookItem;
 }
+

@@ -17,14 +17,9 @@ h1 {
 }
 
 .book-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
   border: 1px solid #ddd;
-  border-radius: 8px;
   padding: 10px;
-  transition: transform 0.2s;
+  text-align: center;
 }
 
 .book-item:hover {
@@ -32,18 +27,16 @@ h1 {
 }
 
 .book-cover {
-  width: 150px;
-  height: 225px;
-  object-fit: cover;
-  margin-bottom: 10px;
+  max-width: 100%;
+  height: auto;
 }
 
 .book-title {
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-top: 10px;
 }
 
 .book-author {
   font-style: italic;
-  color: #666;
+  margin-top: 5px;
 }
