@@ -6,7 +6,7 @@
     --gray-1: rgb(142, 142, 147);
     --gray-2: rgb(229, 229, 234);
     --gray-lines: #f0f0f0;
-    --theme-color: rgb(255, 149, 0);
+    --theme-color: rgb(88, 86, 214);
   }
 }
 
@@ -18,7 +18,7 @@
     --gray-1: rgb(152, 152, 157);
     --gray-2: rgb(44, 44, 46);
     --gray-lines: #343434;
-    --theme-color: rgb(255, 159, 10);
+    --theme-color: rgb(94, 92, 230);
   }
 }
 
@@ -157,7 +157,7 @@ button {
 #chatHeader h2 {
   font-size: 1.2rem;
   line-height: 120%;
-  font-weight: 600;
+  font-weight: 400;
   margin: 0.5rem 0 0.4rem 0;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -204,7 +204,7 @@ button {
 
 #chatInput button {
   position: absolute;
-  right: 1.5rem;
+  right: 1.4rem;
 
   width: 2rem;
   height: 2rem;
