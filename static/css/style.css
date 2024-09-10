@@ -2,6 +2,7 @@
   :root {
     --text: #0a0a0a;
     --background: #ffffff;
+    --gray-1: rgb(142, 142, 147);
     --gray-2: rgb(229, 229, 234);
     --gray-lines: #f0f0f0;
     --theme-color: rgba(0, 122, 255, 1);
@@ -12,6 +13,7 @@
   :root {
     --text: #e0e0e0;
     --background: #1e1e1e;
+    --gray-1: rgb(152, 152, 157);
     --gray-2: rgb(44, 44, 46);
     --gray-lines: #343434;
     --theme-color: rgba(10, 132, 255, 1);
@@ -34,10 +36,12 @@ h1 {
   line-height: 160%;
   border-bottom: 1px solid var(--gray-lines);
 }
-h2 {
-  font-size: 1rem;
-  line-height: 150%;
-  font-weight: 600;
+
+input,
+button {
+  -webkit-appearance: none;
+  background: none;
+  border: none;
 }
 
 .book-grid {
@@ -48,7 +52,7 @@ h2 {
 }
 
 .book-item {
-  padding: 10px;
+  padding: 0.5rem;
   text-align: center;
   cursor: pointer;
   transition: transform 0.4s cubic-bezier(0.47, 1.64, 0.41, 0.8);
@@ -96,7 +100,7 @@ h2 {
   max-height: 800px;
   background-color: var(--background);
   border: 1px solid var(--gray-lines);
-  border-radius: 1.8rem;
+  border-radius: 2rem;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -110,21 +114,45 @@ h2 {
 }
 
 #chatHeader {
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 1rem 0.5rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--gray-lines);
+  background-color: var(--gray-lines);
+}
+
+#chatHeader h2 {
+  font-size: 1.2rem;
+  line-height: 120%;
+  font-weight: 600;
+  margin: 0.5rem 0 0.4rem 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+#chatHeader h3 {
+  color: var(--gray-1);
+  font-size: 1rem;
+  line-height: 100%;
+  font-weight: 400;
+  margin: 0 0 0.5em 0;
+}
+
+#chatHeader svg {
+  fill: var(--gray-2);
 }
 
 #chatMessages {
   flex-grow: 1;
   overflow-y: auto;
-  padding: 10px;
+  padding: 1rem;
 }
 
 #chatInput {
-  font-size: 0.8rem;
+  font-size: 1rem;
   display: flex;
   justify-content: center;
   padding: 1rem;
@@ -133,6 +161,7 @@ h2 {
 #chatInput input {
   -webkit-appearance: none;
   color: var(--text);
+  font-size: 0.9rem;
   border: 1px solid var(--gray-lines);
   border-radius: 2rem;
   line-height: 1.6rem;
@@ -155,26 +184,26 @@ h2 {
 #userMessage {
   flex-grow: 1;
   margin-right: 1rem;
-  padding: 0.5rem;
+  padding: 1rem 0.5rem;
+  min-height: 1.5rem;
 }
 
 .message {
-  color: var(--text);
-  background-color: var(--gray-2);
   margin-bottom: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
   max-width: 70%;
 }
 
 .message.user {
-  color: var(--text);
+  color: white;
   background-color: var(--theme-color);
   align-self: flex-end;
   margin-left: auto;
 }
 
 .message.assistant {
-  background-color: #f0f0f0;
+  color: var(--text);
+  background-color: var(--gray-2);
   align-self: flex-start;
 }

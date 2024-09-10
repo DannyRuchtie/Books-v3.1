@@ -79,6 +79,7 @@ function createBookElement(book) {
 function openChatInterface(book) {
     currentBookId = book.id;
     document.getElementById('chatBookTitle').textContent = book.title;
+    document.getElementById('chatBookAuthor').textContent = book.creator; // Set the author here
     document.getElementById('chatInterface').classList.remove('hidden');
     document.getElementById('chatMessages').innerHTML = '';
     document.getElementById('userMessage').value = '';
