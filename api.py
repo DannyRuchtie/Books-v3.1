@@ -178,6 +178,9 @@ covers_dir = os.path.join(os.path.dirname(__file__), "covers")
 os.makedirs(covers_dir, exist_ok=True)
 app.mount("/covers", StaticFiles(directory=covers_dir), name="covers")
 
+# Mount the ico directory
+app.mount("/ico", StaticFiles(directory="ico"), name="ico")
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
