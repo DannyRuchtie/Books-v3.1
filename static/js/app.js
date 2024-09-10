@@ -85,6 +85,51 @@ function openChatInterface(book) {
     document.getElementById('chatInterface').classList.remove('hidden');
     document.getElementById('chatMessages').innerHTML = '';
     document.getElementById('userMessage').value = '';
+
+    // Make the chat interface draggable
+    makeDraggable(document.getElementById('chatHeader'), document.getElementById('chatInterface'));
+}
+
+function makeDraggable(header, chatInterface) {
+    let isDragging = false;
+    let initialMouseX, initialMouseY;
+    let initialTransformX = 0; // Initial transform X position
+    let initialTransformY = 0; // Initial transform Y position
+
+    header.addEventListener('mousedown', (e) => {
+        isDragging = true;
+
+        // Store the initial mouse position
+        initialMouseX = e.clientX;
+        initialMouseY = e.clientY;
+
+        // Get the current transform values
+        const computedStyle = window.getComputedStyle(chatInterface);
+        const matrix = new DOMMatrix(computedStyle.transform);
+        initialTransformX = matrix.m41; // Current translateX
+        initialTransformY = matrix.m42; // Current translateY
+
+        document.body.style.cursor = 'grabbing'; // Change cursor to grabbing
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            // Calculate the difference in mouse position
+            const deltaX = e.clientX - initialMouseX;
+            const deltaY = e.clientY - initialMouseY;
+
+            // Update the transform property to move the chat interface
+            chatInterface.style.transform = `translate(${initialTransformX + deltaX}px, ${initialTransformY + deltaY}px)`;
+        }
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+        document.body.style.cursor = 'default'; // Reset cursor
+    });
+
+    // Prevent text selection while dragging
+    header.addEventListener('dragstart', (e) => e.preventDefault());
 }
 
 function closeChatInterface() {
