@@ -15,7 +15,63 @@ document.addEventListener('DOMContentLoaded', () => {
             sendMessage();
         }
     });
+
+    // Add drag-and-drop functionality to the entire document
+    document.body.addEventListener('dragover', (e) => {
+        e.preventDefault(); // Prevent default behavior (Prevent file from being opened)
+        document.body.classList.add('hover');
+    });
+
+    document.body.addEventListener('dragleave', () => {
+        document.body.classList.remove('hover');
+    });
+
+    document.body.addEventListener('drop', (e) => {
+        e.preventDefault();
+        document.body.classList.remove('hover');
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            uploadFile(files[0]); // Upload the first file
+        }
+    });
 });
+
+async function uploadFile(file) {
+    // Log the file type for debugging
+    console.log('File type:', file.type);
+    console.log('File name:', file.name);
+
+    // Check if the file is an EPUB based on the extension and MIME type
+    const isEpub = file.type === 'application/epub+zip' || 
+                   file.type === 'application/zip' || 
+                   file.name.endsWith('.epub');
+
+    if (!isEpub) {
+        alert('Please upload a valid EPUB file.');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+        // Update the URL to include the correct port for the upload endpoint
+        const response = await fetch(`http://localhost:8001/upload/${currentUserId}`, {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to upload file');
+        }
+
+        const result = await response.json();
+        console.log('Upload successful:', result);
+        fetchBooks(currentUserId); // Refresh the book list after upload
+    } catch (error) {
+        console.error('Error uploading file:', error);
+    }
+}
 
 async function fetchBooks(userId) {
     console.log('Fetching books for user:', userId);
