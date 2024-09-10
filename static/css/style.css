@@ -77,6 +77,8 @@ button {
   text-align: center;
   cursor: pointer;
   transition: transform 0.4s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+  display: flex;
+  justify-content: end;
 }
 
 .book-item:hover {

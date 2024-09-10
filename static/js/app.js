@@ -5,7 +5,7 @@ let currentBookId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM fully loaded');
-    fetchBooks(currentUserId);
+    fetchBooks(currentUserId); // Fetch books when the page loads
 
     // Add event listeners for chat interface
     document.getElementById('chatBackdrop').addEventListener('click', closeChatInterface);
@@ -73,6 +73,7 @@ async function uploadFile(file) {
 async function fetchBooks(userId) {
     console.log('Fetching books for user:', userId);
     try {
+        // Add a cache-busting parameter to the URL
         const response = await fetch(`/books/${userId}?t=${Date.now()}`); // Cache busting
         if (!response.ok) {
             throw new Error('Failed to fetch books');

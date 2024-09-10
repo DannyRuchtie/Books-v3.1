@@ -71,7 +71,7 @@ def get_user_id(user_id: str):
 
 @app.get("/books/{user_id}", response_model=List[Book])
 async def list_books(user_id: str = Depends(get_user_id)):
-    # Query the database each time this endpoint is called
+    logger.info(f"Fetching books for user: {user_id}")
     results = collection.query(
         query_texts=[""],
         where={"$and": [{"type": "book_metadata"}, {"user_id": user_id}]},
