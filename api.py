@@ -42,6 +42,8 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Mount the static directory
 app.mount("/static", StaticFiles(directory="static"), name="static")
+# Add the ico directory
+app.mount("/ico", StaticFiles(directory="ico"), name="ico")
 
 # Serve the index.html file
 @app.get("/")
@@ -162,7 +164,7 @@ async def chat(request: ChatRequest):
     
     async def event_generator():
         stream = client.chat.completions.create(
-            model="gpt-4",
+            model="gpt-4o-mini",
             messages=messages,
             stream=True
         )

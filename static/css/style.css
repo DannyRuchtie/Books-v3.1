@@ -6,7 +6,7 @@
     --gray-1: rgb(142, 142, 147);
     --gray-2: rgb(229, 229, 234);
     --gray-lines: #f0f0f0;
-    --theme-color: rgba(0, 122, 255, 1);
+    --theme-color: rgb(88, 86, 214);
   }
 }
 
@@ -18,7 +18,7 @@
     --gray-1: rgb(152, 152, 157);
     --gray-2: rgb(44, 44, 46);
     --gray-lines: #343434;
-    --theme-color: rgba(10, 132, 255, 1);
+    --theme-color: rgba(94, 92, 230, 1);
   }
 }
 
@@ -253,6 +253,10 @@ button {
 }
 
 .message.assistant:empty {
+  width: 2rem;
+  height: 1rem;
+  content: "...";
+  transition: all ease-in-out;
   animation-name: pulse;
   animation-duration: 2s;
   animation-timing-function: ease-in-out;
@@ -265,6 +269,11 @@ button {
   object-fit: cover; /* Crop the image to fit the square */
   border-radius: 0.5rem; /* Optional: Add some rounding to the corners */
   margin-right: 1rem; /* Space between the image and text */
+}
+
+.chat-interface.animate-back {
+  transition: transform 0.5s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+  transform: translate(0, 0); /* Move back to the center */
 }
 
 /* animations */
