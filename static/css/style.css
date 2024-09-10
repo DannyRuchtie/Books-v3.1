@@ -22,6 +22,12 @@
   }
 }
 
+* {
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
     Arial, sans-serif;
@@ -38,6 +44,11 @@ h1 {
   margin: 4rem 0.5rem;
   line-height: 150%;
   border-bottom: 1px solid var(--gray-lines);
+}
+
+h1 a {
+  text-decoration: none;
+  color: var(--text);
 }
 
 input,
@@ -237,6 +248,8 @@ button {
   color: var(--text);
   background-color: var(--gray-2);
   align-self: flex-start;
+  user-select: text;
+  -webkit-user-select: text; /* Safari */
 }
 
 .message.assistant:empty {
