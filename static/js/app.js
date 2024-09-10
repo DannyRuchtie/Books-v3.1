@@ -37,11 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function uploadFile(file) {
-    // Log the file type for debugging
-    console.log('File type:', file.type);
-    console.log('File name:', file.name);
-
-    // Check if the file is an EPUB based on the extension and MIME type
+    // Check if the file is an EPUB based on the extension
     const isEpub = file.type === 'application/epub+zip' || 
                    file.type === 'application/zip' || 
                    file.name.endsWith('.epub');
@@ -55,7 +51,6 @@ async function uploadFile(file) {
     formData.append('file', file);
 
     try {
-        // Update the URL to include the correct port for the upload endpoint
         const response = await fetch(`http://localhost:8001/upload/${currentUserId}`, {
             method: 'POST',
             body: formData,
@@ -67,7 +62,9 @@ async function uploadFile(file) {
 
         const result = await response.json();
         console.log('Upload successful:', result);
-        fetchBooks(currentUserId); // Refresh the book list after upload
+        
+        // Refresh the book list after upload
+        fetchBooks(currentUserId); // Ensure this is called after a successful upload
     } catch (error) {
         console.error('Error uploading file:', error);
     }

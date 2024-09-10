@@ -42,8 +42,6 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Mount the static directory
 app.mount("/static", StaticFiles(directory="static"), name="static")
-# Add the ico directory
-app.mount("/ico", StaticFiles(directory="ico"), name="ico")
 
 # Serve the index.html file
 @app.get("/")
