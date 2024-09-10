@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchBooks(currentUserId);
 
     // Add event listeners for chat interface
-    document.getElementById('closeChatBtn').addEventListener('click', closeChatInterface);
+    document.getElementById('chatBackdrop').addEventListener('click', closeChatInterface);
     document.getElementById('sendMessageBtn').addEventListener('click', sendMessage);
     document.getElementById('userMessage').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
@@ -80,6 +80,7 @@ function openChatInterface(book) {
     currentBookId = book.id;
     document.getElementById('chatBookTitle').textContent = book.title;
     document.getElementById('chatBookAuthor').textContent = book.creator; // Set the author here
+    document.getElementById('chatBackdrop').classList.remove('hidden');
     document.getElementById('chatInterface').classList.remove('hidden');
     document.getElementById('chatMessages').innerHTML = '';
     document.getElementById('userMessage').value = '';
@@ -87,6 +88,7 @@ function openChatInterface(book) {
 
 function closeChatInterface() {
     document.getElementById('chatInterface').classList.add('hidden');
+    document.getElementById('chatBackdrop').classList.add('hidden');
     currentBookId = null;
 }
 

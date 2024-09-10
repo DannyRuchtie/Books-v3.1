@@ -89,6 +89,16 @@ button {
   display: none;
 }
 
+.chat-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(245, 245, 247, 0.85);
+  z-index: 2;
+}
+
 .chat-interface {
   position: fixed;
   top: 50%;
@@ -107,8 +117,10 @@ button {
   box-shadow: 0px 1px 1px rgba(3, 7, 18, 0.02), 0px 5px 4px rgba(3, 7, 18, 0.03),
     0px 12px 9px rgba(3, 7, 18, 0.05), 0px 20px 15px rgba(3, 7, 18, 0.06),
     0px 32px 24px rgba(3, 7, 18, 0.08);
+  z-index: 3;
 }
 
+.chat-backdrop.hidden,
 .chat-interface.hidden {
   display: none;
 }
@@ -119,7 +131,6 @@ button {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--gray-lines);
-  background-color: var(--gray-lines);
 }
 
 #chatHeader h2 {
