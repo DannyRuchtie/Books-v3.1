@@ -80,6 +80,7 @@ function openChatInterface(book) {
     currentBookId = book.id;
     document.getElementById('chatBookTitle').textContent = book.title;
     document.getElementById('chatBookAuthor').textContent = book.creator; // Set the author here
+    document.getElementById('chatCoverImage').src = book.cover_url; // Set the cover image here
     document.getElementById('chatBackdrop').classList.remove('hidden');
     document.getElementById('chatInterface').classList.remove('hidden');
     document.getElementById('chatMessages').innerHTML = '';

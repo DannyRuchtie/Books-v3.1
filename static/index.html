@@ -39,6 +39,8 @@
 
     <div id="chatInterface" class="chat-interface hidden">
       <div id="chatHeader">
+        <img id="chatCoverImage" class="chat-cover" alt="Book Cover" />
+        <!-- Added this line -->
         <div class="book-info">
           <h2 id="chatBookTitle"></h2>
           <h3 id="chatBookAuthor"></h3>
@@ -52,7 +54,21 @@
           id="userMessage"
           placeholder="Type your message..."
         />
-        <button id="sendMessageBtn">&#8593;</button>
+        <button id="sendMessageBtn">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15.0469 27.3164C13.9688 27.3164 13.2539 26.5664 13.2539 25.4297V13.8633L13.3594 11.4609L11.4727 13.6758L9 16.1484C8.67188 16.4883 8.26172 16.7344 7.71094 16.7344C6.73828 16.7344 6 16.0195 6 15C6 14.5195 6.19922 14.0742 6.5625 13.7109L13.7227 6.52734C14.0508 6.19922 14.5664 6 15.0469 6C15.5391 6 16.0547 6.19922 16.3828 6.52734L23.5547 13.7109C23.918 14.0742 24.1172 14.5195 24.1172 15C24.1172 16.0195 23.3789 16.7344 22.4062 16.7344C21.8555 16.7344 21.4453 16.4883 21.1172 16.1484L18.6328 13.6758L16.7461 11.4609L16.8516 13.8633V25.4297C16.8516 26.5664 16.1367 27.3164 15.0469 27.3164Z"
+              fill="white"
+              style="fill: white; fill-opacity: 1"
+            />
+          </svg>
+        </button>
       </div>
     </div>
 
