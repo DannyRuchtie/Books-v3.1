@@ -40,8 +40,11 @@ collection = chroma_client.get_or_create_collection(name="books")
 # OpenAI setup
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# Mount the static directory
+# Mount the static directory for CSS, JS, and HTML
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# Mount the ico directory for favicon and other icons
+app.mount("/ico", StaticFiles(directory="static/ico"), name="ico")
 
 # Serve the index.html file
 @app.get("/")

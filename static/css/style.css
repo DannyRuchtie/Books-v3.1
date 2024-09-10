@@ -1,27 +1,30 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
 
 h1 {
-  text-align: center;
+  font-family: -apple-system-ui-serif, ui-serif, "Georgia", serif;
+  margin-left: 0.5rem;
+  line-height: 160%;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .book-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
 .book-item {
-  border: 1px solid #ddd;
   padding: 10px;
   text-align: center;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.4s cubic-bezier(0.47, 1.64, 0.41, 0.8);
 }
 
 .book-item:hover {
@@ -31,16 +34,28 @@ h1 {
 .book-cover {
   max-width: 100%;
   height: auto;
+  transition: transform 0.4s ease-in-out;
+  box-shadow: 0px 1px 1px rgba(3, 7, 18, 0.08), 0px 5px 4px rgba(3, 7, 18, 0.06),
+    0px 12px 9px rgba(3, 7, 18, 0.05), 0px 20px 15px rgba(3, 7, 18, 0.03),
+    0px 32px 24px rgba(3, 7, 18, 0.02);
+}
+
+.book-cover:hover {
+  box-shadow: 0px 1px 1px rgba(3, 7, 18, 0.02), 0px 5px 4px rgba(3, 7, 18, 0.03),
+    0px 12px 9px rgba(3, 7, 18, 0.05), 0px 20px 15px rgba(3, 7, 18, 0.06),
+    0px 32px 24px rgba(3, 7, 18, 0.08);
 }
 
 .book-title {
   font-weight: bold;
   margin-top: 10px;
+  display: none;
 }
 
 .book-author {
   font-style: italic;
   margin-top: 5px;
+  display: none;
 }
 
 .chat-interface {

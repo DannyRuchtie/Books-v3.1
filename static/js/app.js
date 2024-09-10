@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function fetchBooks(userId) {
     console.log('Fetching books for user:', userId);
     try {
-        const response = await fetch(`/books/${userId}`);
+        const response = await fetch(`/books/${userId}?t=${Date.now()}`); // Cache busting
         if (!response.ok) {
             throw new Error('Failed to fetch books');
         }
@@ -156,7 +156,21 @@ function addMessageToChat(role, content) {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-window.addEventListener('focus', () => {
-    fetchBooks(currentUserId);
-});
+async function uploadBook(bookData) {
+    // Your upload logic here
+    const response = await fetch('/upload', {
+        method: 'POST',
+        body: JSON.stringify(bookData),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+
+    if (response.ok) {
+        // Refresh the book list after successful upload
+        fetchBooks(currentUserId);
+    } else {
+        console.error('Failed to upload book');
+    }
+}
 
