@@ -1,2 +1,16 @@
 .venv
 .env
+__pycache__
+/chroma_db
+
+/venv
+/chroma_db
+chroma_db/chroma.sqlite3
+chroma_db/chroma.sqlite3
+/chroma_db
+chroma_db/chroma.sqlite3
+chroma_db/12a52f1e-1e13-4d07-aef6-9626ccc4449e/link_lists.bin
+chroma_db/12a52f1e-1e13-4d07-aef6-9626ccc4449e/length.bin
+chroma_db/12a52f1e-1e13-4d07-aef6-9626ccc4449e/index_metadata.pickle
+chroma_db/12a52f1e-1e13-4d07-aef6-9626ccc4449e/header.bin
+chroma_db/12a52f1e-1e13-4d07-aef6-9626ccc4449e/data_level0.bin

@@ -11,7 +11,9 @@ import chromadb
 from PIL import Image
 import io
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-import html  # Add this import at the top of your file
+import html
+import concurrent.futures
+from itertools import chain
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -49,10 +51,10 @@ def extract_cover_image(zip_ref, opf_content, book_id):
         if cover_item is not None:
             cover_path = cover_item.get('href')
             logger.info(f"Found cover path: {cover_path}")
-            
+
             # Try to find the cover file in the EPUB
             try:
-                with zip_ref.open(cover_path) as cover_file:
+                with zip_ref.open(os.path.join(os.path.dirname(opf_file), cover_path)) as cover_file:
                     cover_data = cover_file.read()
             except KeyError:
                 # If the direct path fails, try to find the file in the EPUB
@@ -81,95 +83,116 @@ def extract_cover_image(zip_ref, opf_content, book_id):
         logger.error(f"Error extracting cover image: {str(e)}")
         return None
 
-def process_book(temp_file_path, user_id, book_id, filename):
+def process_xhtml_item(args):
+    item, zip_ref, opf_file = args
+    html_path = item.get('href')
     try:
-        logger.info(f"Starting to process book: {filename}")
-        
-        with zipfile.ZipFile(temp_file_path, 'r') as zip_ref:
-            opf_file = next((f for f in zip_ref.namelist() if f.endswith('.opf')), None)
-            if not opf_file:
-                raise ValueError("No OPF file found in the EPUB")
-            
-            logger.info(f"Found OPF file: {opf_file}")
-            with zip_ref.open(opf_file) as opf:
-                opf_content = opf.read()
-                content_root = ET.fromstring(opf_content)
-            
-            ns = {'dc': 'http://purl.org/dc/elements/1.1/', 'opf': 'http://www.idpf.org/2007/opf'}
-            title = content_root.find('.//dc:title', ns).text if content_root.find('.//dc:title', ns) is not None else "Unknown Title"
-            creator = content_root.find('.//dc:creator', ns).text if content_root.find('.//dc:creator', ns) is not None else "Unknown Author"
-            identifier = content_root.find('.//dc:identifier', ns).text if content_root.find('.//dc:identifier', ns) is not None else "Unknown Identifier"
-            description = content_root.find('.//dc:description', ns).text if content_root.find('.//dc:description', ns) is not None else "No description available"
-            
-            logger.info(f"Extracted metadata - Title: {title}, Creator: {creator}, Identifier: {identifier}")
-            
-            cover_url = extract_cover_image(zip_ref, opf_content, book_id)
-            if not cover_url:
-                cover_url = "/covers/default.jpg"
-            
-            book_content = ""
-            for item in content_root.findall('.//opf:item[@media-type="application/xhtml+xml"]', ns):
-                html_path = item.get('href')
-                try:
-                    html_content = zip_ref.read(os.path.join(os.path.dirname(opf_file), html_path)).decode('utf-8')
-                    soup = BeautifulSoup(html_content, 'html.parser')
-                    book_content += soup.get_text() + "\n"
-                except Exception as e:
-                    logger.error(f"Error processing file {html_path}: {str(e)}")
-        
-        logger.info(f"Extracted book content. Length: {len(book_content)} characters")
-        logger.info("Starting chunking process...")
-        
+        full_path = os.path.join(os.path.dirname(opf_file), html_path)
+        html_content = zip_ref.read(full_path).decode('utf-8')
+        soup = BeautifulSoup(html_content, 'html.parser')
+        text = soup.get_text(separator=' ', strip=True)
         text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=1000,
             chunk_overlap=100,
             length_function=len,
         )
-        chunks = text_splitter.split_text(book_content)
-        
-        logger.info(f"Chunking complete. Total chunks: {len(chunks)}")
-        
-        logger.info("Adding book metadata and chunks to ChromaDB...")
-        
-        collection.add(
-            documents=[book_content[:1000]],  # This might need to include the full description
-            metadatas=[{
-                "type": "book_metadata",
-                "user_id": user_id,
-                "book_id": book_id,
-                "title": title,
-                "creator": creator,
-                "identifier": identifier,
-                "cover_url": cover_url,
-                "description": description  # Make sure this line is present
-            }],
-            ids=[book_id]
-        )
-        
-        # Add chunks in batches
-        batch_size = 100
-        for i in range(0, len(chunks), batch_size):
-            batch_chunks = chunks[i:i+batch_size]
-            batch_ids = [f"{book_id}_chunk_{j}" for j in range(i, i+len(batch_chunks))]
-            batch_metadatas = [{
-                "type": "book_chunk",
-                "user_id": user_id,
-                "book_id": book_id,
-                "title": title,
-                "creator": creator,
-                "chunk_index": j,
-                "total_chunks": len(chunks)
-            } for j in range(i, i+len(batch_chunks))]
-            
+        chunks = text_splitter.split_text(text)
+        return chunks
+    except Exception as e:
+        logger.error(f"Error processing file {html_path}: {str(e)}")
+        return []
+
+def process_book(temp_file_path, user_id, book_id, filename):
+    try:
+        logger.info(f"Starting to process book: {filename}")
+
+        with zipfile.ZipFile(temp_file_path, 'r') as zip_ref:
+            opf_file = next((f for f in zip_ref.namelist() if f.endswith('.opf')), None)
+            if not opf_file:
+                raise ValueError("No OPF file found in the EPUB")
+
+            logger.info(f"Found OPF file: {opf_file}")
+            with zip_ref.open(opf_file) as opf:
+                opf_content = opf.read()
+                content_root = ET.fromstring(opf_content)
+
+            ns = {'dc': 'http://purl.org/dc/elements/1.1/', 'opf': 'http://www.idpf.org/2007/opf'}
+            title_element = content_root.find('.//dc:title', ns)
+            title = title_element.text if title_element is not None else "Unknown Title"
+            creator_element = content_root.find('.//dc:creator', ns)
+            creator = creator_element.text if creator_element is not None else "Unknown Author"
+            identifier_element = content_root.find('.//dc:identifier', ns)
+            identifier = identifier_element.text if identifier_element is not None else "Unknown Identifier"
+            description_element = content_root.find('.//dc:description', ns)
+            description = description_element.text if description_element is not None else "No description available"
+
+            logger.info(f"Extracted metadata - Title: {title}, Creator: {creator}, Identifier: {identifier}")
+
+            cover_url = extract_cover_image(zip_ref, opf_content, book_id)
+            if not cover_url:
+                cover_url = "/covers/default.jpg"
+
+            xhtml_items = content_root.findall('.//opf:item[@media-type="application/xhtml+xml"]', ns)
+            logger.info(f"Found {len(xhtml_items)} XHTML items to process.")
+
+            # Prepare arguments for parallel processing
+            args_list = [(item, zip_ref, opf_file) for item in xhtml_items]
+
+            # Process XHTML items in parallel
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                chunks_list = list(executor.map(process_xhtml_item, args_list))
+
+            # Flatten the list of chunks
+            all_chunks = list(chain.from_iterable(chunks_list))
+            total_chunks = len(all_chunks)
+
+            logger.info(f"Chunking complete. Total chunks: {total_chunks}")
+
+            logger.info("Adding book metadata and chunks to ChromaDB...")
+
+            # Add book metadata to ChromaDB
             collection.add(
-                documents=batch_chunks,
-                metadatas=batch_metadatas,
-                ids=batch_ids
+                documents=[description],
+                metadatas=[{
+                    "type": "book_metadata",
+                    "user_id": user_id,
+                    "book_id": book_id,
+                    "title": title,
+                    "creator": creator,
+                    "identifier": identifier,
+                    "cover_url": cover_url,
+                    "description": description
+                }],
+                ids=[book_id]
             )
-            logger.info(f"Added batch of {len(batch_chunks)} chunks to ChromaDB")
-        
-        logger.info(f"Added book metadata and {len(chunks)} chunks to ChromaDB")
-        return {"status": "success", "message": f"Book '{title}' processed successfully", "chunks_added": len(chunks)}
+
+            # Add chunks in batches
+            batch_size = 500  # Adjusted batch size for better performance
+            for i in range(0, total_chunks, batch_size):
+                batch_chunks = all_chunks[i:i+batch_size]
+                batch_ids = [f"{book_id}_chunk_{j}" for j in range(i, i+len(batch_chunks))]
+                batch_metadatas = [{
+                    "type": "book_chunk",
+                    "user_id": user_id,
+                    "book_id": book_id,
+                    "title": title,
+                    "creator": creator,
+                    "chunk_index": j,
+                    "total_chunks": total_chunks
+                } for j in range(i, i+len(batch_chunks))]
+
+                collection.add(
+                    documents=batch_chunks,
+                    metadatas=batch_metadatas,
+                    ids=batch_ids
+                )
+                logger.info(f"Added batch of {len(batch_chunks)} chunks to ChromaDB")
+
+            logger.info(f"Added book metadata and {total_chunks} chunks to ChromaDB")
+            return {"status": "success", "message": f"Book '{title}' processed successfully", "chunks_added": total_chunks}
+
+        # No need to concatenate all text content
+        # Processing and chunking are done per chapter to optimize performance
 
     except Exception as e:
         logger.error(f"Error processing book: {str(e)}")
@@ -197,10 +220,10 @@ async def upload_file(user_id: str, file: UploadFile = File(...)):
         logger.info(f"File saved temporarily at: {temp_file_path}")
 
         book_id = str(uuid.uuid4())
-        
+
         # Process the book immediately
         result = process_book(temp_file_path, user_id, book_id, file.filename)
-        
+
         return {"message": "File uploaded and processed successfully", "book_id": book_id, "result": result}
     except Exception as e:
         logger.error(f"Error processing upload: {str(e)}")
