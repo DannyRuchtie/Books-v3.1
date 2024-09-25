@@ -1,5 +1,6 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi import FastAPI, File, UploadFile, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import OAuth2PasswordBearer
 import os
 import uuid
 import shutil
@@ -35,6 +36,9 @@ app.add_middleware(
 CHROMA_PATH = os.path.join("chroma_db")
 chroma_client = chromadb.PersistentClient(path=CHROMA_PATH)
 collection = chroma_client.get_or_create_collection(name="books")
+
+# OAuth2 scheme
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 def extract_cover_image(zip_ref, opf_content, book_id):
     try:
@@ -202,9 +206,13 @@ def process_book(temp_file_path, user_id, book_id, filename):
             os.remove(temp_file_path)
             logger.info(f"Removed temporary file: {temp_file_path}")
 
-@app.post("/upload/{user_id}")
-async def upload_file(user_id: str, file: UploadFile = File(...)):
+@app.post("/upload")
+async def upload_file(file: UploadFile = File(...), token: str = Depends(oauth2_scheme)):
     try:
+        # Validate the token and get the user (you'll need to implement this)
+        user = await get_current_user(token)
+        user_id = user.username
+
         # Create a directory for temporary files if it doesn't exist
         temp_dir = os.path.join(os.getcwd(), "temp_uploads")
         os.makedirs(temp_dir, exist_ok=True)

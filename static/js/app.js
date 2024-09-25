@@ -1,11 +1,10 @@
 console.log('app.js loaded');
 
-let currentUserId = '1'; // Replace with actual user ID or method to get it
-let currentBookId = null;
+let currentUserId = null;
+let accessToken = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM fully loaded');
-    fetchBooks(currentUserId); // Fetch books when the page loads
 
     // Add event listeners for chat interface
     document.getElementById('chatBackdrop').addEventListener('click', closeChatInterface);
@@ -34,7 +33,87 @@ document.addEventListener('DOMContentLoaded', () => {
             uploadFile(files[0]); // Upload the first file
         }
     });
+
+    // Add login form submission handler
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        await login(username, password);
+    });
+
+    // Check for stored token on page load
+    const storedToken = localStorage.getItem('accessToken');
+    if (storedToken) {
+        accessToken = storedToken;
+        // Verify token and fetch user info
+        fetch('/users/me', {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+            },
+        })
+        .then(response => response.json())
+        .then(userData => {
+            currentUserId = userData.username;
+            updateUIForLoggedInUser(userData);
+            fetchBooks();
+        })
+        .catch(error => {
+            console.error('Error verifying stored token:', error);
+            // Clear invalid token
+            localStorage.removeItem('accessToken');
+        });
+    }
 });
+
+async function login(username, password) {
+    try {
+        const response = await fetch('/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
+        });
+
+        if (!response.ok) {
+            throw new Error('Login failed');
+        }
+
+        const data = await response.json();
+        accessToken = data.access_token;
+        localStorage.setItem('accessToken', accessToken);
+
+        // Fetch user info
+        const userResponse = await fetch('/users/me', {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+            },
+        });
+
+        if (!userResponse.ok) {
+            throw new Error('Failed to fetch user info');
+        }
+
+        const userData = await userResponse.json();
+        currentUserId = userData.username;
+
+        // Update UI to show logged-in state
+        updateUIForLoggedInUser(userData);
+
+        // Fetch books for the logged-in user
+        fetchBooks();
+    } catch (error) {
+        console.error('Login error:', error);
+        // Show error message to user
+    }
+}
+
+function updateUIForLoggedInUser(userData) {
+    document.getElementById('loginSection').style.display = 'none';
+    document.getElementById('bookSection').style.display = 'block';
+    // You can add more UI updates here, like showing the user's name
+}
 
 async function uploadFile(file) {
     // Check if the file is an EPUB based on the extension
@@ -51,8 +130,11 @@ async function uploadFile(file) {
     formData.append('file', file);
 
     try {
-        const response = await fetch(`http://localhost:8001/upload/${currentUserId}`, {
+        const response = await fetch(`/upload`, {
             method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+            },
             body: formData,
         });
 
@@ -64,17 +146,21 @@ async function uploadFile(file) {
         console.log('Upload successful:', result);
         
         // Refresh the book list after upload
-        fetchBooks(currentUserId); // Ensure this is called after a successful upload
+        fetchBooks(); // Ensure this is called after a successful upload
     } catch (error) {
         console.error('Error uploading file:', error);
     }
 }
 
-async function fetchBooks(userId) {
-    console.log('Fetching books for user:', userId);
+async function fetchBooks() {
+    console.log('Fetching books for user:', currentUserId);
     try {
         // Add a cache-busting parameter to the URL
-        const response = await fetch(`/books/${userId}?t=${Date.now()}`); // Cache busting
+        const response = await fetch(`/books?t=${Date.now()}`, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+            },
+        }); // Cache busting
         if (!response.ok) {
             throw new Error('Failed to fetch books');
         }
@@ -210,6 +296,7 @@ async function sendMessage() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
             },
             body: JSON.stringify({
                 user_id: currentUserId,

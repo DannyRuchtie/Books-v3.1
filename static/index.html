@@ -29,10 +29,20 @@
     <link rel="stylesheet" href="/static/css/style.css" />
   </head>
   <body>
-    <h1><a href="/"> All Books</a></h1>
+    <div id="loginSection">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
 
-    <div id="bookGrid" class="book-grid">
-      <!-- Books will be dynamically added here -->
+    <div id="bookSection" style="display: none;">
+        <h1><a href="/"> All Books</a></h1>
+        <div id="bookGrid" class="book-grid">
+            <!-- Books will be dynamically added here -->
+        </div>
     </div>
 
     <div id="chatBackdrop" class="chat-backdrop hidden"></div>
