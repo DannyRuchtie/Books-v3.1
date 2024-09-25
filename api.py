@@ -1,5 +1,5 @@
 print("Starting api.py")
-from fastapi import FastAPI, HTTPException, Depends, status
+from fastapi import FastAPI, HTTPException, Depends, status, Query
 from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
@@ -117,7 +117,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = De
         raise credentials_exception
     return user
 
-async def get_current_active_user(current_user: User = Depends(get_current_user)):
+async def get_current_active_user(current_user: DBUser = Depends(get_current_user)):
     if current_user.disabled:
         raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
@@ -139,7 +139,7 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
     return {"access_token": access_token, "token_type": "bearer"}
 
 @app.get("/users/me", response_model=User)
-async def read_users_me(current_user: User = Depends(get_current_active_user)):
+async def read_users_me(current_user: DBUser = Depends(get_current_active_user)):
     return current_user
 
 # Mount the static directory
@@ -167,13 +167,44 @@ class ChatRequest(BaseModel):
     book_id: str
     messages: List[ChatMessage]
 
-@app.get("/books", response_model=List[Book])
-async def list_books(current_user: User = Depends(get_current_active_user)):
-    user_id = current_user.username
-    logger.info(f"Fetching books for user: {user_id}")
+# Define a new Pydantic model for the book response
+class BookResponse(BaseModel):
+    id: str
+    identifier: str
+    title: str
+    creator: str
+    cover_url: str
+    description: str
+    data: dict  # This will contain the book_id
+
+@app.get("/books", response_model=List[BookResponse])
+async def list_books(
+    current_user: DBUser = Depends(get_current_active_user),
+    user_id: Optional[str] = Query(None, description="User ID to fetch books for (admin only)"),
+    skip: int = Query(0, ge=0),
+    limit: int = Query(10, ge=1, le=100),
+    search: Optional[str] = Query(None, min_length=3, max_length=50)
+):
+    if user_id and user_id != str(current_user.id):
+        if not current_user.is_admin:
+            raise HTTPException(status_code=403, detail="Not authorized to view other users' books")
+    else:
+        user_id = str(current_user.id)
+
+    logger.info(f"Fetching books for user ID: {user_id}")
+    
+    where_clause = {"$and": [{"type": "book_metadata"}, {"user_id": user_id}]}
+    
+    if search:
+        where_clause["$and"].append({"$or": [
+            {"title": {"$contains": search}},
+            {"creator": {"$contains": search}},
+            {"description": {"$contains": search}}
+        ]})
+    
     results = collection.query(
         query_texts=[""],
-        where={"$and": [{"type": "book_metadata"}, {"user_id": user_id}]},
+        where=where_clause,
         include=["metadatas"]
     )
     
@@ -182,20 +213,23 @@ async def list_books(current_user: User = Depends(get_current_active_user)):
         for i in range(len(id_list)):
             book_id = str(id_list[i])
             metadata = metadata_list[i]
-            books.append(Book(
-                id=book_id,
-                identifier=metadata.get('identifier', 'Unknown'),
-                title=metadata.get('title', 'Unknown Title'),
-                creator=metadata.get('creator', 'Unknown Author'),
-                cover_url=metadata.get('cover_url', '/static/default_cover.jpg'),
-                description=metadata.get('description', 'No description available')
-            ))
+            if metadata.get('user_id') == user_id:  # Additional check
+                books.append(BookResponse(
+                    id=book_id,
+                    identifier=metadata.get('identifier', 'Unknown'),
+                    title=metadata.get('title', 'Unknown Title'),
+                    creator=metadata.get('creator', 'Unknown Author'),
+                    cover_url=metadata.get('cover_url', '/static/default_cover.jpg'),
+                    description=metadata.get('description', 'No description available'),
+                    data={"book_id": book_id}  # Add the book_id to the data field
+                ))
     
-    return books
+    # Apply pagination after fetching all results
+    return books[skip : skip + limit]
 
 @app.delete("/books/{book_id}")
-async def delete_book(book_id: str, current_user: User = Depends(get_current_active_user)):
-    user_id = current_user.username
+async def delete_book(book_id: str, current_user: DBUser = Depends(get_current_active_user)):
+    user_id = str(current_user.id)
     try:
         # Query to find the book
         results = collection.get(
@@ -223,8 +257,8 @@ async def delete_book(book_id: str, current_user: User = Depends(get_current_act
         raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
 
 @app.post("/chat")
-async def chat(request: ChatRequest, current_user: User = Depends(get_current_active_user)):
-    user_id = current_user.username
+async def chat(request: ChatRequest, current_user: DBUser = Depends(get_current_active_user)):
+    user_id = str(current_user.id)
     # Retrieve book metadata
     book_metadata = collection.get(
         ids=[request.book_id],
@@ -307,6 +341,14 @@ def register_user(user: UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_user)
     return db_user
+
+@app.get("/debug/books")
+async def debug_books(current_user: DBUser = Depends(get_current_active_user)):
+    results = collection.get(
+        where={"type": "book_metadata"},
+        include=["metadatas"]
+    )
+    return {"results": results}
 
 if __name__ == "__main__":
     import uvicorn

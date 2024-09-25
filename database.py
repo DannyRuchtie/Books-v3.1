@@ -20,6 +20,7 @@ class User(Base):
     full_name = Column(String)
     hashed_password = Column(String)
     disabled = Column(Boolean, default=False)
+    is_admin = Column(Boolean, default=False)  # Add this line
 
 Base.metadata.create_all(bind=engine)
 

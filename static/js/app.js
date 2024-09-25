@@ -192,8 +192,20 @@ function displayBooks(books) {
 }
 
 function createBookElement(book) {
+    console.log('Book object:', book);  // Add this line to log the book object
+
     const bookItem = document.createElement('div');
     bookItem.className = 'book-item';
+    
+    // Try different ways to access the book_id
+    if (book.data && book.data.book_id) {
+        bookItem.dataset.bookId = book.data.book_id;
+    } else if (book.id) {
+        bookItem.dataset.bookId = book.id;
+    } else {
+        console.warn('Could not find book_id for:', book.title);
+    }
+    
     bookItem.addEventListener('click', () => openChatInterface(book));
 
     const coverImg = document.createElement('img');
@@ -212,6 +224,8 @@ function createBookElement(book) {
     bookItem.appendChild(coverImg);
     bookItem.appendChild(titleElement);
     bookItem.appendChild(authorElement);
+
+    console.log('Created book element:', bookItem.outerHTML);  // Add this line to log the created element
 
     return bookItem;
 }
